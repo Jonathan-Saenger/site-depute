@@ -1,0 +1,67 @@
+:root {
+  /* Charte graphique générale */
+  --primary-color: #0066cc;
+  --primary-dark: #004e9e;
+  --secondary-color: #5D94D4;
+  --accent-color: #F8C200;
+  --text-color: #333333;
+  --text-light: #666666;
+  --background-light: #f9f9f9;
+  --white: #ffffff;
+  --gray-light: #e0e0e0;
+  --gray: #aaaaaa;
+  --border-color: #dddddd;
+}
+
+* {
+  margin : 0;
+  padding : 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}

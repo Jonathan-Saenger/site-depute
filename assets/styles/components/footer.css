@@ -1,0 +1,32 @@
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 1070px) {
+  .social-links {
+      display: none;
+  }
+
+  .navbar.active .social-links {
+      display: flex;
+      margin-top: 1rem;
+  }
+}
