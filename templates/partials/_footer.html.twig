@@ -1,41 +1,60 @@
 <footer class="site-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <div class="footer-nav">
-                    <img src="{{asset('images/header_logo.png')}}" alt="Votre député Eric Francois">
-                    <img src="{{asset('images/eric-francois-logo-AN.png')}}" alt="Votre député Eric Francois">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-nav">
+                    <!-- Logo Eric François -->
+                    <div class="deputy-logo">
+                        <a href="#" class="deputy-link">
+                            <div class="deputy-name"><span class="deputy-name-name">Éric</span><br>François</div>
+                            <div class="deputy-title">DÉPUTÉ DE LA<br>6<sup>ème</sup> CIRCONSCRIPTION<br>DU HAUT-RHIN</div>
+                        </a>
                     </div>
-                    <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Votre député</a></li>
-                            <li><a href="#">Dans le Haut-Rhin</a></li>
-                            <li><a href="#">A l'Assemblée Nationale</a></li>
-                            <li><a href="#">Rencontres</a></li>
-                            <li><a href="#">Presse</a></li>
-                        </ul>
+                    <!-- Social icons for desktop -->
+                    <div class="footer-social desktop-social">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
                     </div>
-                    <div class="footer-nav">
-                        <ul>
-                            <li><a href="#">Me contacter</a></li>
-                            <li><a href="#">Consulter ma page sur le site de l'Assemblée Nationale</a></li>
-                            <li><a href="#">Mention légales</a></li>
-                        </ul>
-                        <div class="footer-social">
-                            <div class="social-icons">
-                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
+                </div>
+                <div class="footer-nav">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#">Votre député</a></li>
+                        <li><a href="#">Dans le Haut-Rhin</a></li>
+                        <li><a href="#">A l'Assemblée Nationale</a></li>
+                        <li><a href="#">Rencontres</a></li>
+                        <li><a href="#">Presse</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="#">Me contacter</a></li>
+                        <li><a href="#">Ma page sur le site de l'Assemblée Nationale</a></li>
+                        <li><a href="#">Mention légales</a></li>
+                    </ul>
+                    <!-- Social icons for mobile -->
+                    <div class="footer-social mobile-social">
+                        <h3>Suivez-moi</h3>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; {{ "now"|date("Y") }} - Site réalisé avec <span class="heart">♡</span> par Jonathan Saenger - Tous droits réservés</p>
-                <div class="legal-links">
-                </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {{ "now"|date("Y") }} - Site réalisé avec <span class="heart">♡</span> par Jonathan Saenger - Tous droits réservés</p>
+            <div class="legal-links">
+                <!-- Liens légaux supplémentaires si nécessaire -->
             </div>
         </div>
-    </footer
+    </div>
+</footer>
