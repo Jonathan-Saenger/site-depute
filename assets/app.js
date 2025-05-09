@@ -91,15 +91,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         .news-card:nth-child(2), .priority-card:nth-child(2), .stat-item:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .news-card:nth-child(3), .priority-card:nth-child(3), .stat-item:nth-child(3) {
             transition-delay: 0.3s;
         }
 
+        .news-card:nth-child(3), .priority-card:nth-child(3), .stat-item:nth-child(3) {
+            transition-delay: 0.5s;
+        }
+
         .news-card:nth-child(4), .priority-card:nth-child(4), .stat-item:nth-child(4) {
-            transition-delay: 0.4s;
+            transition-delay: 0.6s;
         }
     `;
     document.head.appendChild(style);
