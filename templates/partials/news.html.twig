@@ -3,39 +3,21 @@
             <div class="container-news">
                 <h2 class="section-title">Actualités</h2>
                 <div class="news-grid">
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1494059980473-813e73ee784b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Actualité parlementaire">
-                        </div>
-                        <div class="news-content">
-                            <span class="news-date">15 Avril 2025</span>
-                            <h3>Visite du nouveau centre culturel de Pontoise</h3>
-                            <p>J'ai eu le plaisir de visiter le nouveau centre culturel qui ouvrira ses portes au public en juin prochain.</p>
-                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Débat parlementaire">
-                        </div>
-                        <div class="news-content">
-                            <span class="news-date">8 Avril 2025</span>
-                            <h3>Débat sur la transition énergétique à l'Assemblée Nationale</h3>
-                            <p>Participation au débat sur les nouveaux enjeux de la transition énergétique et les implications pour notre région.</p>
-                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rencontre citoyenne">
-                        </div>
-                        <div class="news-content">
-                            <span class="news-date">2 Avril 2025</span>
-                            <h3>Rencontre citoyenne à Osny sur le thème de l'emploi</h3>
-                            <p>Échanges constructifs avec les habitants sur les défis de l'emploi dans notre circonscription.</p>
-                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
+                    {% for article in articles %}
+                        <article class="news-card">
+                            <div class="news-image">
+                                <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
+                            </div>
+                            <div class="news-content">
+                                <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
+                                <h3>{{ article.title }}</h3>
+                                <p>{{ article.content|striptags|slice(0, 150) }}...</p>
+                                <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </article>
+                    {% else %}
+                        <p>Aucun article disponible.</p>
+                    {% endfor %}
                 </div>
                 <div class="see-all-news">
                     <a href="#" class="btn btn-outlined">Voir toutes les actualités</a>
