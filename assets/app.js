@@ -10,6 +10,7 @@ import './styles/base.css';
 import './styles/layout.css';
 import './styles/components/footer.css';
 import './styles/components/hero.css';
+import './styles/components/news.css';
 import './styles/components/header.css';
 
 // Navbar pour mobile
