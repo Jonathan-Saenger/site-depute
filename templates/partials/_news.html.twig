@@ -3,7 +3,7 @@
             <div class="container-news">
                 <h2 class="section-title">Actualités</h2>
                 <div class="news-grid">
-                    {% for article in articles %}
+                    {% for article in articles|slice(0, 3) %}
                         <article class="news-card">
                             <div class="news-image">
                                 <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
@@ -24,4 +24,4 @@
                 </div>
             </div>
         </section>
-{% endblock %}
+{% endblock %}yes

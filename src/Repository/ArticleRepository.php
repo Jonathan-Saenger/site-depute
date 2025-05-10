@@ -21,7 +21,6 @@ class ArticleRepository extends ServiceEntityRepository
                 ->andWhere('a.isPublished = :published')
                 ->setParameter('published', true)
                 ->orderBy('a.createdAt', 'DESC')
-                ->setMaxResults(10)
                 ->getQuery()
                 ->getResult()
             ;
