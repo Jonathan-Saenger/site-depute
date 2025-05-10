@@ -12,7 +12,7 @@ final class NewsController extends AbstractController
     #[Route('/news', name: 'app_news')]
     public function index(ArticleRepository $articleRepository): Response
     {
-        return $this->render('partials/news.html.twig', [
+        return $this->render('partials/_news.html.twig', [
             'articles' => $articleRepository->findPublishedArticles(),
         ]);
     }
