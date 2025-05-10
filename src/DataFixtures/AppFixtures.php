@@ -7,7 +7,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Article;
-
+use App\Enum\CategoryEnum;
 
 class AppFixtures extends Fixture
 {
@@ -22,6 +22,7 @@ class AppFixtures extends Fixture
             $article->setContent($faker->paragraph(5));
             $article->setCreatedAt(new \DateTimeImmutable($faker->dateTimeBetween('-1 year')->format('Y-m-d')));
             $article->setIsPublished(true);
+            $article->setCategory($faker->randomElement([CategoryEnum::ASSEMBLEE, CategoryEnum::CIRCONSCRIPTION]));
             $article->setImageUrl($faker->imageUrl(640, 480, 'politics'));
             $article->setImageUrl("https://picsum.photos/640/480?random=" . $i);
 
