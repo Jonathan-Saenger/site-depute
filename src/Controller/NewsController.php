@@ -16,4 +16,12 @@ final class NewsController extends AbstractController
             'articles' => $articleRepository->findPublishedArticles(),
         ]);
     }
+
+    #[Route('/actualites', name: 'app_news_page')]
+    public function newsPage(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('pages/news.html.twig', [
+            'articles' => $articleRepository->findPublishedArticles(),
+        ]);
+    }
 }
