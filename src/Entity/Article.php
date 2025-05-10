@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\CategoryEnum;
 use App\Repository\ArticleRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,6 +35,9 @@ class Article
 
     #[ORM\Column]
     private ?bool $isPublished = null;
+
+    #[ORM\Column(enumType: CategoryEnum::class)]
+    private ?CategoryEnum $category = null;
 
     public function getId(): ?int
     {
@@ -120,6 +124,18 @@ class Article
     public function setIsPublished(bool $isPublished): static
     {
         $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getCategory(): ?CategoryEnum
+    {
+        return $this->category;
+    }
+
+    public function setCategory(CategoryEnum $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
