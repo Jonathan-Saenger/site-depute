@@ -15,14 +15,26 @@ class ArticleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Article::class);
     }
-        public function findPublishedArticles(): array
-        {
-            return $this->createQueryBuilder('a')
-                ->andWhere('a.isPublished = :published')
-                ->setParameter('published', true)
-                ->orderBy('a.createdAt', 'DESC')
-                ->getQuery()
-                ->getResult()
-            ;
-        }
+
+    public function findPublishedArticles(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublished = :published')
+            ->setParameter('published', true)
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findPublishedArticlesByCategory(string $category): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublished = :published')
+            ->andWhere('a.category = :category')
+            ->setParameter('published', true)
+            ->setParameter('category', $category)
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

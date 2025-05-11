@@ -5,23 +5,33 @@ namespace App\Controller;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class NewsController extends AbstractController
 {
-    #[Route('/news', name: 'app_news')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function __construct(private ArticleRepository $articleRepository)
+    {
+    }
+
+    #[Route('/actualite', name: 'app_news_index')]
+    public function index(): Response
     {
         return $this->render('partials/_news.html.twig', [
-            'articles' => $articleRepository->findPublishedArticles(),
+            'articles' => $this->articleRepository->findPublishedArticles(),
         ]);
     }
 
-    #[Route('/actualites', name: 'app_news_page')]
-    public function newsPage(ArticleRepository $articleRepository): Response
+    #[Route('/actualite/{category}', name: 'app_news_category', requirements: ['category' => 'circonscription|assemblee'])]
+    public function indexByCategory(string $category): Response
     {
-        return $this->render('pages/news.html.twig', [
-            'articles' => $articleRepository->findPublishedArticles(),
+        $template = match ($category) {
+            'circonscription' => 'pages/actualites/circonscription.html.twig',
+            'assemblee' => 'pages/actualites/assemblee.html.twig',
+            default => throw $this->createNotFoundException('Category not found'),
+        };
+
+        return $this->render($template, [
+            'articles' => $this->articleRepository->findPublishedArticlesByCategory(strtoupper($category)),
         ]);
     }
 }

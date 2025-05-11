@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités - Eric François{% endblock %}
+
+{% block body %}
+    <section class="hero-section">
+        <div class="container-news">
+            <div class="hero-content">
+                <h1>Actualités</h1>
+                <div class="tricolor-bar">
+                    <div class="bar blue"></div>
+                    <div class="bar white"></div>
+                    <div class="bar red"></div>
+                </div>
+                <p class="subtitle">Suivez mon actualité en tant que député de la 6ème circonscription du Haut-Rhin</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container-news">
+            <div class="news-filters">
+                <div class="search-box">
+                    <input type="text" placeholder="Rechercher un article..." class="search-input">
+                    <button class="btn btn-primary">Rechercher</button>
+                </div>
+            </div>
+
+            <div class="news-grid">
+                {% for article in articles %}
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
+                        </div>
+                        <div class="news-content">
+                            <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
+                            <h3>{{ article.title }}</h3>
+                            <p>{{ article.content|striptags|slice(0, 150) }}...</p>
+                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                {% else %}
+                    <div class="no-results">
+                        <p>Aucun article n'est disponible pour le moment.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="btn btn-outlined"><i class="fas fa-chevron-left"></i> Précédent</a>
+                <div class="page-numbers">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                </div>
+                <a href="#" class="btn btn-outlined">Suivant <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
