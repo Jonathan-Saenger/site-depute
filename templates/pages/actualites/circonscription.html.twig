@@ -3,17 +3,15 @@
 {% block title %}Actualités - Eric François{% endblock %}
 
 {% block body %}
-    <section class="hero-section">
-        <div class="container-news">
-            <div class="hero-content">
-                <h1>Actualités</h1>
-                <div class="tricolor-bar">
-                    <div class="bar blue"></div>
-                    <div class="bar white"></div>
-                    <div class="bar red"></div>
-                </div>
-                <p class="subtitle">Suivez mon actualité en tant que député de la 6ème circonscription du Haut-Rhin</p>
+    <section class="hero-circonscription">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>En circonscription</h1>
+                <p class="actu-subtitle">Découvrez mon activité de député au plus proche de vous sur le terrain !</p>
             </div>
+        </div>
+        <div class="cantons-circonscription">
+            <p>Ferrette - Readersdorf - Bendorf - Liegsdorf - Biederthal - Blotzheim - Bruebach - Chalampé - Chavannes - Chavannes-sur-l'Étang - Chêne-Bourg - Chêne-Bougeries - Chêne-Pâquier - Chêne-Thuy</p>
         </div>
     </section>
 
@@ -22,11 +20,11 @@
             <div class="news-filters">
                 <div class="search-box">
                     <input type="text" placeholder="Rechercher un article..." class="search-input">
-                    <button class="btn btn-primary">Rechercher</button>
                 </div>
             </div>
 
             <div class="news-grid">
+                <p id="no-articles-message" style="display: none; color: #0066cc; grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-style: italic; align-self: center; justify-self: center;">Aucun article ne correspond à votre recherche</p>
                 {% for article in articles %}
                     <article class="news-card">
                         <div class="news-image">
@@ -45,16 +43,34 @@
                     </div>
                 {% endfor %}
             </div>
-
-            <div class="pagination">
-                <a href="#" class="btn btn-outlined"><i class="fas fa-chevron-left"></i> Précédent</a>
-                <div class="page-numbers">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                </div>
-                <a href="#" class="btn btn-outlined">Suivant <i class="fas fa-chevron-right"></i></a>
-            </div>
-        </div>
     </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.querySelector('.search-input');
+        const newsCards = document.querySelectorAll('.news-card');
+        const noArticlesMessage = document.getElementById('no-articles-message');
+
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            let foundArticles = false;
+
+            newsCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                    foundArticles = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (foundArticles) {
+                noArticlesMessage.style.display = 'none';
+            } else {
+                noArticlesMessage.style.display = 'block';
+            }
+        });
+    });
+</script>
 {% endblock %}

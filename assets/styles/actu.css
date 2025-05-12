@@ -1,0 +1,172 @@
+.hero-circonscription {
+  background-image: url('/images/circonscription_alsace.png'); /* Chemin relatif à partir du dossier public */
+  background-size: cover; /* L'image couvre toute la section */
+  background-position: center; /* Centrer l'image */
+  background-repeat: no-repeat; /* Ne pas répéter l'image */
+  height: 500px; /* Ajustez la hauteur selon vos besoins */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Assurez-vous que le texte est lisible */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-circonscription::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.65; }
+}
+
+.circonscription-content {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  background-color: rgba(240, 248, 255, 0.65);
+  border-radius: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.container-circonscription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 2rem;
+}
+
+.cantons-circonscription {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.318);
+  padding: 10px 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.cantons-circonscription p {
+  margin: 0;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.actu-subtitle {
+  color: var(--text-color);
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.5;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.news-filters {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 30px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background: var(--background-light);
+  border-radius: 8px;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page-numbers a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.page-numbers a.active,
+.page-numbers a:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .search-box {
+      flex-direction: column;
+  }
+
+  .circonscription-content {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.75rem;
+  }
+
+  .circonscription-content h1 {
+    font-size: 1.75rem;
+    margin: 0.5rem 0;
+  }
+
+  .cantons-circonscription {
+    font-size: 0.8rem;
+    padding: 8px 0;
+  }
+}
