@@ -42,7 +42,7 @@ final class NewsController extends AbstractController
         if (!$article) {
             throw $this->createNotFoundException('Article non trouvé');
         }
-        return $this->render('pages/actualites/show.html.twig', [
+        return $this->render('pages/actualites/article.html.twig', [
             'article' => $article,
         ]);
     }
