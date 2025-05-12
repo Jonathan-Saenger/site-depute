@@ -3,6 +3,7 @@
 {% block title %}Actualités Nationale à Paris - Eric François{% endblock %}
 
 {% block body %}
+
     <section class="hero-section hero-assemblee">
         <div class="container-circonscription">
             <div class="circonscription-content">
@@ -19,14 +20,9 @@
         <div class="container-news">
             {% include 'pages/actualites/_search_box.html.twig' %}
             <div class="news-grid">
-                <p id="no-articles-message" style="display: none; color: #0066cc; grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-style: italic; align-self: center; justify-self: center;">Aucun article ne correspond à votre recherche</p>
-                {% for article in articles %}
-                    {% include 'pages/actualites/_article_card.html.twig' with { article: article } %}
-                {% else %}
-                    <div class="no-results">
-                        <p>Aucun article n'est disponible pour le moment.</p>
-                    </div>
-                {% endfor %}
+                {% include 'pages/actualites/_article_card.html.twig' %}
             </div>
+        </div>
     </section>
+
 {% endblock %}
