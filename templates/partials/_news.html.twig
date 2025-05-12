@@ -12,7 +12,7 @@
                                 <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
                                 <h3>{{ article.title }}</h3>
                                 <p>{{ article.content|striptags|slice(0, 150) }}...</p>
-                                <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ path('app_news_show', {'id': article.id}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </article>
                     {% else %}
@@ -20,7 +20,13 @@
                     {% endfor %}
                 </div>
                 <div class="see-all-news">
-                    <a href="#" class="btn btn-outlined">Voir toutes les actualités</a>
+                    <div class="dropdown-news">
+                        <button class="btn btn-outlined dropdown-toggle">Voir les actualités</button>
+                        <div class="dropdown-menu">
+                            <a href="{{ path('app_news_category', {category: 'circonscription'}) }}" class="dropdown-item">En circonscription</a>
+                            <a href="{{ path('app_news_category', {category: 'assemblee'}) }}" class="dropdown-item">À l'Assemblée Nationale</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

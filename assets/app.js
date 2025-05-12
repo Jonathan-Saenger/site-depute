@@ -109,5 +109,40 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', animateOnScroll);
     window.addEventListener('scroll', animateOnScroll);
 
+    // Dropdown actualités (menu déroulant des actus)
+    const dropdown = document.querySelector('.dropdown-news');
+    if (dropdown) {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+        });
+    }
 
+    // Filtrage des articles par titre
+    const searchInput = document.querySelector('.search-input');
+    const newsCards = document.querySelectorAll('.news-card');
+    const noArticlesMessage = document.getElementById('no-articles-message');
+
+    if (searchInput && newsCards && noArticlesMessage) {
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase();
+            let foundArticles = false;
+
+            newsCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = '';
+                    foundArticles = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noArticlesMessage.style.display = foundArticles ? 'none' : 'block';
+        });
+    }
 });

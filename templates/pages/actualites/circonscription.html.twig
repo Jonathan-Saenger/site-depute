@@ -34,7 +34,7 @@
                             <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
                             <h3>{{ article.title }}</h3>
                             <p>{{ article.content|striptags|slice(0, 150) }}...</p>
-                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ path('app_news_show', {'id': article.id}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </article>
                 {% else %}
@@ -44,33 +44,4 @@
                 {% endfor %}
             </div>
     </section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.querySelector('.search-input');
-        const newsCards = document.querySelectorAll('.news-card');
-        const noArticlesMessage = document.getElementById('no-articles-message');
-
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase();
-            let foundArticles = false;
-
-            newsCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(query)) {
-                    card.style.display = 'block';
-                    foundArticles = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (foundArticles) {
-                noArticlesMessage.style.display = 'none';
-            } else {
-                noArticlesMessage.style.display = 'block';
-            }
-        });
-    });
-</script>
 {% endblock %}

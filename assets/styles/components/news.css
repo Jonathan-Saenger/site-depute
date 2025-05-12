@@ -82,4 +82,87 @@
 
 .see-all-news {
   text-align: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.see-all-news .btn {
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  border: 2px solid var(--primary-color, #0066cc);
+  background: transparent;
+  color: var(--primary-color, #0066cc);
+  font-weight: 600;
+  font-size: 1rem;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+}
+
+.see-all-news .btn:hover,
+.see-all-news .btn:focus {
+  background: var(--primary-color, #0066cc);
+  color: #fff;
+  border-color: var(--primary-color, #0066cc);
+  box-shadow: 0 4px 16px rgba(0,102,204,0.10);
+  text-decoration: none;
+}
+
+.dropdown-news {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle::after {
+  content: " ▼";
+  font-size: 0.8em;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 110%;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid var(--primary-color, #0066cc);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,102,204,0.10);
+  z-index: 100;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--primary-color, #0066cc);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: var(--primary-color, #0066cc);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.dropdown-news.open .dropdown-menu {
+  display: block;
+}
+
+/* Responsive : bouton seul sur mobile */
+@media (max-width: 600px) {
+  .see-all-news {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
