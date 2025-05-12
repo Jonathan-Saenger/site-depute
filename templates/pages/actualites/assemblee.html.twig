@@ -1,55 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualités - Eric François{% endblock %}
+{% block title %}Actualités Nationale à Paris - Eric François{% endblock %}
 
 {% block body %}
-    <section class="hero-section">
-        <div class="container-news">
-            <div class="hero-content">
-                <h1>A l'Assemblée</h1>
-                <p class="actu-subtitle">Suivez mon actualité en tant que député de la 6ème circonscription du Haut-Rhin</p>
+    <section class="hero-section hero-assemblee">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>A l'Assemblée Nationale</h1>
+                <p class="actu-subtitle">Suivez mon engagement et mes prises de position sur les grands enjeux nationaux à l’Assemblée&nbsp;Nationale.</p>
             </div>
+        </div>
+        <div class="cantons-circonscription">
+            <p>Liberté &ndash; Égalité &ndash; Fraternité &ndash; République &ndash; Citoyenneté &ndash; Démocratie &ndash; Débats nationaux &ndash; Lois &ndash; Éducation &ndash; Santé &ndash; Économie &ndash; Environnement &ndash; Solidarité</p>
         </div>
     </section>
 
     <section class="news-section">
         <div class="container-news">
-            <div class="news-filters">
-                <div class="search-box">
-                    <input type="text" placeholder="Rechercher un article..." class="search-input">
-                    <button class="btn btn-primary">Rechercher</button>
-                </div>
-            </div>
-
+            {% include 'pages/actualites/_search_box.html.twig' %}
             <div class="news-grid">
+                <p id="no-articles-message" style="display: none; color: #0066cc; grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-style: italic; align-self: center; justify-self: center;">Aucun article ne correspond à votre recherche</p>
                 {% for article in articles %}
-                    <article class="news-card">
-                        <div class="news-image">
-                            <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
-                        </div>
-                        <div class="news-content">
-                            <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
-                            <h3>{{ article.title }}</h3>
-                            <p>{{ article.content|striptags|slice(0, 150) }}...</p>
-                            <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </article>
+                    {% include 'pages/actualites/_article_card.html.twig' with { article: article } %}
                 {% else %}
                     <div class="no-results">
                         <p>Aucun article n'est disponible pour le moment.</p>
                     </div>
                 {% endfor %}
             </div>
-
-            <div class="pagination">
-                <a href="#" class="btn btn-outlined"><i class="fas fa-chevron-left"></i> Précédent</a>
-                <div class="page-numbers">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                </div>
-                <a href="#" class="btn btn-outlined">Suivant <i class="fas fa-chevron-right"></i></a>
-            </div>
-        </div>
     </section>
 {% endblock %}

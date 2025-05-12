@@ -1,16 +1,23 @@
-.hero-circonscription {
-  background-image: url('/images/circonscription_alsace.png'); /* Chemin relatif à partir du dossier public */
-  background-size: cover; /* L'image couvre toute la section */
-  background-position: center; /* Centrer l'image */
-  background-repeat: no-repeat; /* Ne pas répéter l'image */
-  height: 500px; /* Ajustez la hauteur selon vos besoins */
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white; /* Assurez-vous que le texte est lisible */
+  color: white;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.hero-circonscription {
+  background-image: url('/images/circonscription_alsace.png');
+}
+
+.hero-assemblee {
+  background-image: url('/images/assemblee_nationale.png');
 }
 
 .hero-circonscription::before {
