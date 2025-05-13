@@ -165,4 +165,8 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
 }

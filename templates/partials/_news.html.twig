@@ -1,7 +1,7 @@
 {% block body %}
         <section class="news-section">
             <div class="container-news">
-                <h2 class="section-title">Actualités</h2>
+                <h2 class="section-title">Mes dernières actualités</h2>
                 <div class="news-grid">
                     {% for article in articles|slice(0, 3) %}
                         <article class="news-card">
@@ -23,7 +23,7 @@
                     <div class="dropdown-news">
                         <button class="btn btn-outlined dropdown-toggle">Voir les actualités</button>
                         <div class="dropdown-menu">
-                            <a href="{{ path('app_news_category', {category: 'circonscription'}) }}" class="dropdown-item">En circonscription</a>
+                            <a href="{{ path('app_news_category', {category: 'circonscription'}) }}" class="dropdown-item">Dans le Haut-Rhin</a>
                             <a href="{{ path('app_news_category', {category: 'assemblee'}) }}" class="dropdown-item">À l'Assemblée Nationale</a>
                         </div>
                     </div>

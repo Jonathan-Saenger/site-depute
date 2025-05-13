@@ -1,18 +1,18 @@
- <p id="no-articles-message" style="display: none; color: #0066cc; grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-style: italic; align-self: center; justify-self: center;">Aucun article ne correspond à votre recherche</p>
+<p id="no-articles-message" style="display: none; color: #0066cc; grid-column: 1 / -1; text-align: center; font-size: 1.2rem; font-style: italic; align-self: center; justify-self: center;">Aucun article ne correspond à votre recherche</p>
 {% for article in articles %}
-<article class="news-card">
-    <div class="news-image">
-        <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
-    </div>
-    <div class="news-content">
-        <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
-        <h3>{{ article.title }}</h3>
-        <p>{{ article.content|striptags|slice(0, 150) }}...</p>
-        <a href="{{ path('app_news_show', {'id': article.id}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
-    </div>
-</article>
+    <article class="news-card">
+        <div class="news-image">
+            <img src="{{ article.imageUrl }}" alt="{{ article.title }}">
+        </div>
+        <div class="news-content">
+            <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.content|striptags|slice(0, 150) }}...</p>
+            <a href="{{ path('app_news_show', {'id': article.id}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </article>
 {% else %}
-                    <div class="no-results">
-                        <p>Aucun article n'est disponible pour le moment.</p>
-                    </div>
-                {% endfor %}
+    <div class="no-results">
+        <p>Aucun article n'est disponible pour le moment.</p>
+    </div>
+{% endfor %}
