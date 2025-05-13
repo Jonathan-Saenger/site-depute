@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités circonscription - Eric François{% endblock %}
+
+{% block body %}
+
+    <section class="hero-section hero-circonscription">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>En circonscription</h1>
+                <p class="actu-subtitle">Découvrez mon activité de député au plus proche de vous sur le terrain !</p>
+            </div>
+        </div>
+        <div class="cantons-circonscription">
+            <p>Ferrette - Readersdorf - Bendorf - Liegsdorf - Biederthal - Blotzheim - Bruebach - Chalampé - Chavannes - Chavannes-sur-l'Étang - Chêne-Bourg - Chêne-Bougeries - Chêne-Pâquier - Chêne-Thuy</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container-news">
+            {% include 'pages/actualites/_search_box.html.twig' %}
+            <div class="news-grid">
+                {% include 'pages/actualites/_article_card.html.twig' %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -28,7 +28,8 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h3, h4, h5, h6 {
+  color: var(--primary-color);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
@@ -42,10 +43,26 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 2.5rem;
+  color: var(--primary-dark) !important;
+  transform: translateY(-50px);
+  animation: slideDown 1s ease forwards;
 }
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 h2 {
   font-size: 2rem;
+  color: var(--primary-dark);
 }
 
 h3 {

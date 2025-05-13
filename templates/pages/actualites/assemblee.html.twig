@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités Nationale à Paris - Eric François{% endblock %}
+
+{% block body %}
+
+    <section class="hero-section hero-assemblee">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>A l'Assemblée Nationale</h1>
+                <p class="actu-subtitle">Suivez mon engagement et mes prises de position sur les grands enjeux nationaux à l’Assemblée&nbsp;Nationale.</p>
+            </div>
+        </div>
+        <div class="cantons-circonscription">
+            <p>Liberté &ndash; Égalité &ndash; Fraternité &ndash; République &ndash; Citoyenneté &ndash; Démocratie &ndash; Débats nationaux &ndash; Lois &ndash; Éducation &ndash; Santé &ndash; Économie &ndash; Environnement &ndash; Solidarité</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container-news">
+            {% include 'pages/actualites/_search_box.html.twig' %}
+            <div class="news-grid">
+                {% include 'pages/actualites/_article_card.html.twig' %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
