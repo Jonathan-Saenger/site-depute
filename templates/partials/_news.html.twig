@@ -21,7 +21,7 @@
                 </div>
                 <div class="see-all-news">
                     <div class="dropdown-news">
-                        <button class="btn btn-outlined dropdown-toggle">Voir les actualités</button>
+                        <button class="btn btn-outlined dropdown-toggle" data-turbo="false">Voir les actualités</button>
                         <div class="dropdown-menu">
                             <a href="{{ path('app_news_category', {category: 'circonscription'}) }}" class="dropdown-item">Dans le Haut-Rhin</a>
                             <a href="{{ path('app_news_category', {category: 'assemblee'}) }}" class="dropdown-item">À l'Assemblée Nationale</a>
