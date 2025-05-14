@@ -2,8 +2,11 @@
     <div class="container">
         <div class="navbar">
             <div class="logo">
-                <a href="{{ path('app_home') }}" title="Votre député Eric Francois" aria-label="Votre député Eric Francois">
-                    <img src="{{asset('images/header_logo.png')}}" alt="Votre député Eric Francois">
+                <a href="{{ path('app_home') }}" title="Votre député Eric Francois" aria-label="Votre député Eric Francois" class="logo-desktop">
+                    <img src="{{ asset('images/header_logo.png') }}" alt="Votre député Eric Francois">
+                </a>
+                <a href="{{ path('app_home') }}" title="Votre député Eric Francois" aria-label="Votre député Eric Francois" class="logo-mobile">
+                    <img src="{{ asset('images/header_logo_smartphone.png') }}" alt="Votre député Eric Francois">
                 </a>
             </div>
             <nav class="main-nav">

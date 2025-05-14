@@ -28,6 +28,13 @@ img {
   height: 55px;
 }
 
+.logo-desktop {
+  display: block;
+}
+.logo-mobile {
+  display: none;
+}
+
 .main-nav {
   flex: 1;
   display: flex;
@@ -145,5 +152,14 @@ img {
 
   .navbar.active .nav-links li {
       margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 407px) {
+  .logo-desktop {
+    display: none;
+  }
+  .logo-mobile {
+    display: block;
   }
 }
