@@ -7,8 +7,10 @@
 
 .news-section {
   padding: 3rem 0;
-  background-color: var(--white);
+  background: var(--background-white);
+  position: relative;
 }
+
 
 .news-grid {
   display: grid;

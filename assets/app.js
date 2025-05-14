@@ -8,6 +8,7 @@ import './styles/components/hero.css';
 import './styles/components/news.css';
 import './styles/components/header.css';
 import './styles/components/priorities.css';
+import './styles/components/work.css';
 
 // Fonction d'initialisation principale (compatible Turbo)
 function initSiteScripts() {

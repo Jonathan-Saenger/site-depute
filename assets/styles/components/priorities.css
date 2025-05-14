@@ -1,23 +1,7 @@
 .priorities-section {
-  padding: 4rem 0;
-  background: var(--white);
+  padding: 3rem 0;
+  background: var(--background-light);
   position: relative;
-}
-
-.priorities-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 33%,
-    var(--primary-color) 66%,
-    var(--secondary-color) 100%
-  );
-  opacity: 0.7;
 }
 
 .priorities-container {
@@ -33,25 +17,6 @@
   gap: 2.5rem;
   align-items: stretch;
   justify-items: center;
-}
-
-@media (max-width: 1200px) {
-  .priorities-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .priorities-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 700px) {
-  .priorities-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
 }
 
 .priority-card {
@@ -135,91 +100,28 @@
   margin-bottom: 1rem;
 }
 
-.section-title {
-  font-size: 2.4rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 3.5rem;
-  position: relative;
-  color: var(--primary-color);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 0 1rem;
+@media (max-width: 1200px) {
+  .priorities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.section-title::before,
-.section-title::after {
-  content: "";
-  position: absolute;
-  height: 3px;
-  background: linear-gradient(90deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-  border-radius: 2px;
-  transition: all 0.4s ease;
-}
-
-.section-title::before {
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-}
-
-.section-title::after {
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-}
-
-/* Animation subtile au survol */
-.section-title:hover::before {
-  width: 80px;
-  transition: width 0.3s ease;
-}
-
-.section-title:hover::after {
-  width: 40px;
-  transition: width 0.3s ease;
-}
-
-/* Responsive */
 @media (max-width: 991px) {
-  .priorities-section {
-    padding: 3rem 0;
+  .priorities-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .priority-card {
-    padding: 1.5rem;
+@media (max-width: 700px) {
+  .priorities-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
 }
 
 @media (max-width: 600px) {
-  .section-title {
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-  }
-
-  .priorities-grid {
-    gap: 1rem;
-  }
-
-  .priority-card {
-    padding: 1.2rem;
-  }
-
-  .priority-icon {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 1.5rem;
-  }
-
-  .priority-icon i {
-    font-size: 28px;
+  .section-title::before {
+    width: 40px;
   }
 }
 

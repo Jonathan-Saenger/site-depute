@@ -15,7 +15,7 @@
 }
 
 .hero-content {
-  width: 49%;
+  width: 45%;
   position: relative;
   z-index: 2;
   padding: 4rem 0;
@@ -41,6 +41,7 @@
 
 .cta-buttons {
   display: flex;
+  justify-content: center;
   gap: 1rem;
 }
 
