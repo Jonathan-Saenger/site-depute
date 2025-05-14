@@ -1,0 +1,221 @@
+.agenda {
+  padding: 5rem 0;
+  background: var(--background-light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: var(--primary-dark);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+
+.section-title::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+.agenda-intro {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.agenda-update {
+  font-size: 0.98rem;
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.agenda-update i {
+  color: var(--accent-color);
+  margin-right: 6px;
+}
+
+.agenda-filters {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-filter {
+  background: var(--white);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  border-radius: 999px;
+  padding: 0.5rem 1.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-filter.active,
+.btn-filter:hover {
+  background: var(--primary-color);
+  color: var(--white);
+  border-color: var(--primary-color);
+}
+
+.agenda-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.agenda-card {
+  display: flex;
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 102, 204, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.agenda-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: var(--primary-dark);
+  color: var(--white);
+  text-align: center;
+  min-width: 80px;
+}
+
+.agenda-date .day {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.agenda-date .month {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.agenda-details {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.agenda-details h3 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.agenda-details p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.agenda-location {
+  display: flex;
+  align-items: center;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.agenda-location i {
+  margin-right: 5px;
+  color: var(--accent-color);
+}
+
+.agenda-actions {
+  text-align: left;
+  margin: 2.5rem 0 1rem 0;
+}
+
+.agenda-actions .btn-outlined {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+}
+
+.agenda-actions .btn-outlined:hover {
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.agenda-more {
+  text-align: left;
+  margin-top: 2rem;
+}
+
+.agenda-more .btn {
+  background: var(--primary-color);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 0.7rem 2rem;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s;
+}
+
+.agenda-more .btn:hover {
+  background: var(--primary-dark);
+}
+
+.agenda-contact {
+  text-align: left;
+  margin-top: 2.5rem;
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.agenda-contact a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .agenda-cards {
+    grid-template-columns: 1fr;
+  }
+  .agenda-details {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  .agenda-details {
+    padding: 1rem 0.5rem;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+}

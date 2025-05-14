@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités Nationale à Paris - Eric François{% endblock %}
+
+{% block body %}
+
+    <section class="agenda">
+          <div class="container">
+              <h2 class="section-title">Agenda</h2>
+              <p class="agenda-intro">
+    Retrouvez ici les prochains rendez-vous publics, déplacements et rencontres de votre député. La transparence et la proximité sont au cœur de mon engagement.
+</p>
+    <p class="agenda-update">
+    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+</p>
+              <div class="agenda-filters">
+    <button class="btn btn-filter active">Tous</button>
+    <button class="btn btn-filter">Rencontres citoyennes</button>
+    <button class="btn btn-filter">Déplacements</button>
+    <button class="btn btn-filter">Réunions publiques</button>
+</div>
+              <div class="agenda-cards">
+                  <article class="agenda-card">
+                      <div class="agenda-date">
+                          <span class="day">25</span>
+                          <span class="month">MAI</span>
+                      </div>
+                      <div class="agenda-details">
+                          <h3>Visite d'Annecy</h3>
+                          <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
+                          <div class="agenda-location">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span>Annecy, Place de l'Hôtel de Ville</span>
+                          </div>
+                      </div>
+                  </article>
+                  <article class="agenda-card">
+                      <div class="agenda-date">
+                          <span class="day">12</span>
+                          <span class="month">JUIN</span>
+                      </div>
+                      <div class="agenda-details">
+                          <h3>Réunion publique</h3>
+                          <p>Présentation des projets pour la vallée de l'Arve</p>
+                          <div class="agenda-location">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span>Cluses, Salle des fêtes</span>
+                          </div>
+                      </div>
+                  </article>
+                  <article class="agenda-card">
+                      <div class="agenda-date">
+                          <span class="day">12</span>
+                          <span class="month">JUIN</span>
+                      </div>
+                      <div class="agenda-details">
+                          <h3>Réunion publique</h3>
+                          <p>Présentation des projets pour la vallée de l'Arve</p>
+                          <div class="agenda-location">
+                              <i class="fas fa-map-marker-alt"></i>
+                              <span>Cluses, Salle des fêtes</span>
+                          </div>
+                      </div>
+                  </article>
+              </div>
+              <div class="agenda-actions">
+                  <a href="#" class="btn btn-outlined">Proposer un rendez-vous citoyen</a>
+              </div>
+              <div class="agenda-more">
+                  <a href="#" class="btn">Voir tout l'agenda</a>
+              </div>
+              <p class="agenda-contact">
+                  Pour toute question sur l’agenda ou pour solliciter la présence du député, contactez l’équipe parlementaire à <a href="mailto:contact@depute.fr">contact@depute.fr</a>.
+              </p>
+          </div>
+    </section>
+
+{% endblock %}

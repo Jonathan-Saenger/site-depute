@@ -3,6 +3,7 @@ import './app.css';
 import './styles/actu.css';
 import './styles/base.css';
 import './styles/layout.css';
+import './styles/rencontre.css';
 import './styles/components/footer.css';
 import './styles/components/hero.css';
 import './styles/components/news.css';
