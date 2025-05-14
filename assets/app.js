@@ -9,6 +9,7 @@ import './styles/components/news.css';
 import './styles/components/header.css';
 import './styles/components/priorities.css';
 import './styles/components/work.css';
+import './styles/components/newsletter.css';
 
 // Fonction d'initialisation principale (compatible Turbo)
 function initSiteScripts() {
@@ -137,6 +138,44 @@ function initSiteScripts() {
             });
 
             noArticlesMessage.style.display = foundArticles ? 'none' : 'block';
+        });
+    }
+
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get email value
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+
+            // Validation simple d'email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Veuillez entrer une adresse email valide.');
+                return;
+            }
+
+            // Efface le champ
+            emailInput.value = '';
+
+            // Affiche le message de succès
+            let successMessage = this.querySelector('.success-message');
+            if (!successMessage) {
+                successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.style.color = '#0066cc';
+                successMessage.style.marginTop = '1rem';
+                successMessage.style.fontWeight = '500';
+                this.appendChild(successMessage);
+            }
+            successMessage.textContent = 'Merci pour votre inscription !';
+
+            // Retire le message après 3 secondes
+            setTimeout(() => {
+                if (successMessage) successMessage.remove();
+            }, 3000);
         });
     }
 }
