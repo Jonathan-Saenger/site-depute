@@ -1,78 +1,180 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualités Nationale à Paris - Eric François{% endblock %}
+{% block title %}Rencontres en circonscription - Eric François{% endblock %}
 
 {% block body %}
 
-    <section class="agenda">
-          <div class="container">
-              <h2 class="section-title">Agenda</h2>
-              <p class="agenda-intro">
-    Retrouvez ici les prochains rendez-vous publics, déplacements et rencontres de votre député. La transparence et la proximité sont au cœur de mon engagement.
-</p>
-    <p class="agenda-update">
-    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
-</p>
-              <div class="agenda-filters">
-    <button class="btn btn-filter active">Tous</button>
-    <button class="btn btn-filter">Rencontres citoyennes</button>
-    <button class="btn btn-filter">Déplacements</button>
-    <button class="btn btn-filter">Réunions publiques</button>
-</div>
-              <div class="agenda-cards">
-                  <article class="agenda-card">
-                      <div class="agenda-date">
-                          <span class="day">25</span>
-                          <span class="month">MAI</span>
-                      </div>
-                      <div class="agenda-details">
-                          <h3>Visite d'Annecy</h3>
-                          <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
-                          <div class="agenda-location">
-                              <i class="fas fa-map-marker-alt"></i>
-                              <span>Annecy, Place de l'Hôtel de Ville</span>
-                          </div>
-                      </div>
-                  </article>
-                  <article class="agenda-card">
-                      <div class="agenda-date">
-                          <span class="day">12</span>
-                          <span class="month">JUIN</span>
-                      </div>
-                      <div class="agenda-details">
-                          <h3>Réunion publique</h3>
-                          <p>Présentation des projets pour la vallée de l'Arve</p>
-                          <div class="agenda-location">
-                              <i class="fas fa-map-marker-alt"></i>
-                              <span>Cluses, Salle des fêtes</span>
-                          </div>
-                      </div>
-                  </article>
-                  <article class="agenda-card">
-                      <div class="agenda-date">
-                          <span class="day">12</span>
-                          <span class="month">JUIN</span>
-                      </div>
-                      <div class="agenda-details">
-                          <h3>Réunion publique</h3>
-                          <p>Présentation des projets pour la vallée de l'Arve</p>
-                          <div class="agenda-location">
-                              <i class="fas fa-map-marker-alt"></i>
-                              <span>Cluses, Salle des fêtes</span>
-                          </div>
-                      </div>
-                  </article>
-              </div>
-              <div class="agenda-actions">
-                  <a href="#" class="btn btn-outlined">Proposer un rendez-vous citoyen</a>
-              </div>
-              <div class="agenda-more">
-                  <a href="#" class="btn">Voir tout l'agenda</a>
-              </div>
-              <p class="agenda-contact">
-                  Pour toute question sur l’agenda ou pour solliciter la présence du député, contactez l’équipe parlementaire à <a href="mailto:contact@depute.fr">contact@depute.fr</a>.
-              </p>
-          </div>
+    <section class="hero-section hero-agenda">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>Agenda des rencontres </h1>
+                <p class="actu-subtitle">Retrouvez ici l’ensemble de mes déplacements, rendez-vous publics et rencontres citoyennes dans toute la circonscription. </p>
+            </div>
+        </div>
+        <div class="rencontres-circonscription">
+            <p>
+                Proximité &ndash; Dialogue &ndash; Écoute &ndash; Engagement &ndash; Rencontres citoyennes &ndash; Échanges &ndash; Présence sur le terrain &ndash; Actions locales &ndash; Cohésion &ndash; Solidarité &ndash; Initiatives &ndash; Vie locale
+            </p>
+        </div>
     </section>
+
+    <section class="agenda">
+            <div class="container">
+                <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
+                <div class="agenda-filters">
+                    <button class="btn btn-filter active" data-type="all">Tous</button>
+                    <button class="btn btn-filter" data-type="citoyennes">Rencontres citoyennes</button>
+                    <button class="btn btn-filter" data-type="publiques">Réunions publiques</button>
+                    <button class="btn btn-filter" data-type="deplacements">Déplacements</button>
+                    <select class="agenda-commune-filter" aria-label="Filtrer par commune">
+                        <option value="all">Toutes les communes</option>
+                        <option value="annecy">Annecy</option>
+                        <option value="cluses">Cluses</option>
+                        <option value="thonon">Thonon-les-Bains</option>
+                        <option value="sallanches">Sallanches</option>
+                        <option value="bonneville">Bonneville</option>
+                        <!-- Ajoute ici toutes les communes de la circonscription -->
+                    </select>
+                </div>
+                <div class="agenda-cards">
+                    <article class="agenda-card" data-type="citoyennes" data-commune="annecy">
+                        <div class="agenda-date">
+                            <span class="day">25</span>
+                            <span class="month">DECEMBRE</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Visite d'Annecy</h3>
+                            <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Annecy, Place de l'Hôtel de Ville</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="agenda-card">
+                        <div class="agenda-date">
+                            <span class="day">12</span>
+                            <span class="month">JUIN</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Réunion publique</h3>
+                            <p>Présentation des projets pour la vallée de l'Arve</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cluses, Salle des fêtes</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="agenda-card">
+                        <div class="agenda-date">
+                            <span class="day">12</span>
+                            <span class="month">JUIN</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Réunion publique</h3>
+                            <p>Présentation des projets pour la vallée de l'Arve</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cluses, Salle des fêtes</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="agenda-card">
+                        <div class="agenda-date">
+                            <span class="day">12</span>
+                            <span class="month">JUIN</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Réunion publique</h3>
+                            <p>Présentation des projets pour la vallée de l'Arve</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cluses, Salle des fêtes</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="agenda-card">
+                        <div class="agenda-date">
+                            <span class="day">12</span>
+                            <span class="month">JUIN</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Réunion publique</h3>
+                            <p>Présentation des projets pour la vallée de l'Arve</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cluses, Salle des fêtes</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="agenda-card">
+                        <div class="agenda-date">
+                            <span class="day">12</span>
+                            <span class="month">JUIN</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>Réunion publique</h3>
+                            <p>Présentation des projets pour la vallée de l'Arve</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Cluses, Salle des fêtes</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="invitation-block text-center mt-4">
+                    <p class="invitation-text">
+                        Je me réjouis de vous rencontrer lors de ces événements. N'hésitez pas à venir échanger, même quelques minutes !
+                    </p>
+                    <a href="#contact" class="btn btn-primary mt-3">Me contacter pour plus d'informations</a>
+                </div>
+                <div class="agenda-contact mt-4">
+                    <p>
+                        Pour toute question sur l’agenda ou pour solliciter la présence de votre député, contactez l’équipe parlementaire à
+                        <a href="mailto:contact@depute.fr">contact@depute.fr</a>.
+                    </p>
+                </div>
+                <p class="agenda-update">
+                    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+                </p>
+            </div>
+        </section>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+  // Filtre par type d'événement
+  document.querySelectorAll('.btn-filter').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const type = this.getAttribute('data-type');
+      document.querySelectorAll('.agenda-card').forEach(card => {
+        if (type === 'all' || card.dataset.type === type) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Filtre par commune
+  const communeSelect = document.querySelector('.agenda-commune-filter');
+  if (communeSelect) {
+    communeSelect.addEventListener('change', function () {
+      const commune = this.value;
+      document.querySelectorAll('.agenda-card').forEach(card => {
+        const cardCommune = card.dataset.commune;
+        if (commune === 'all' || cardCommune === commune) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
+});
+        </script>
+
 
 {% endblock %}
