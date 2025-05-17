@@ -19,76 +19,71 @@
     </section>
 
     <section class="agenda">
-            <div class="container">
-                <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
-                <div class="agenda-filters">
-                    <button class="btn btn-filter active" data-type="all">Tous</button>
-                    <button class="btn btn-filter" data-type="citoyennes">Rencontres citoyennes</button>
-                    <button class="btn btn-filter" data-type="publiques">Réunions publiques</button>
-                    <button class="btn btn-filter" data-type="deplacements">Déplacements</button>
-                    <select class="agenda-commune-filter" aria-label="Filtrer par commune">
-                        <option value="all">Toutes les communes</option>
-                        <option value="annecy">Annecy</option>
-                        <option value="cluses">Cluses</option>
-                        <option value="thonon">Thonon-les-Bains</option>
-                        <option value="sallanches">Sallanches</option>
-                        <option value="bonneville">Bonneville</option>
-                    </select>
-                </div>
-                <div class="agenda-cards">
-                    <article class="agenda-card" data-type="citoyennes" data-commune="annecy">
+        <div class="container">
+            <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
+            <div class="agenda-filters">
+                <button class="btn btn-filter active" data-type="all">Tous</button>
+                <button class="btn btn-filter" data-type="citoyennes">Rencontres citoyennes</button>
+                <button class="btn btn-filter" data-type="publiques">Réunions publiques</button>
+                <button class="btn btn-filter" data-type="deplacements">Déplacements</button>
+                <select class="agenda-commune-filter" aria-label="Filtrer par commune">
+                    <option value="all">Toutes les communes</option>
+                    <option value="annecy">Annecy</option>
+                    <option value="cluses">Cluses</option>
+                    <option value="thonon">Thonon-les-Bains</option>
+                    <option value="sallanches">Sallanches</option>
+                    <option value="bonneville">Bonneville</option>
+                </select>
+            </div>
+            <div class="agenda-cards">
+                <article class="agenda-card" data-type="citoyennes" data-commune="annecy">
+                    <div class="agenda-date">
+                        <span class="day">25</span>
+                        <span class="month">DECEMBRE</span>
+                    </div>
+                    <div class="agenda-details">
+                        <h3>Visite d'Annecy</h3>
+                        <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
+                        <div class="agenda-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Annecy, Place de l'Hôtel de Ville</span>
+                        </div>
+                    </div>
+                </article>
+
+                {% for rencontre in rencontres %}
+                    <article class="agenda-card" data-type="{{ rencontre.type.value }}" data-commune="{{ rencontre.commune.value }}">
                         <div class="agenda-date">
-                            <span class="day">25</span>
-                            <span class="month">DECEMBRE</span>
+                            <span class="day">{{ rencontre.date|date('d') }}</span>
+                            <span class="month">{{ rencontre.date|date('F')|upper }}</span>
                         </div>
                         <div class="agenda-details">
-                            <h3>Visite d'Annecy</h3>
-                            <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
+                            <h3>{{ rencontre.titre }}</h3>
+                            <p> {{ rencontre.type.getLabel() }}</p>
+                            <p>{{ rencontre.description }}</p>
                             <div class="agenda-location">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Annecy, Place de l'Hôtel de Ville</span>
+                                <span> {{ rencontre.commune.getLabel() }} {{ rencontre.lieu }}</span>
                             </div>
                         </div>
                     </article>
-
-                    {% for rencontre in rencontres %}
-                        <article class="agenda-card" data-type="{{ rencontre.type.value }}" data-commune="{{ rencontre.commune.value }}">
-                            <div class="agenda-date">
-                                <span class="day">{{ rencontre.date|date('d') }}</span>
-                                <span class="month">{{ rencontre.date|date('F')|upper }}</span>
-                            </div>
-                            <div class="agenda-details">
-                                <h3>{{ rencontre.titre }}</h3>
-                                <p> {{ rencontre.type.getLabel() }}</p>
-                                <p>{{ rencontre.description }}</p>
-                                <div class="agenda-location">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span> {{ rencontre.commune.getLabel() }} {{ rencontre.lieu }}</span>
-                                </div>
-                            </div>
-                        </article>
-
                 {% else %}
                     <p class="no-events">Aucun événement à venir n'est programmé pour le moment.</p>
                 {% endfor %}
-
-                </div>
-                <div class="invitation-block text-center mt-4">
-                    <p class="invitation-text">
-                        Je me réjouis de vous rencontrer lors de ces événements. N'hésitez pas à venir échanger, même quelques minutes !
-                    </p>
-                    <a href="#contact" class="btn btn-primary mt-3">Me contacter pour plus d'informations</a>
-                </div>
-                <div class="agenda-contact mt-4">
-                    <p>
-                        Pour toute question sur l'agenda ou pour solliciter la présence de votre député, contactez l'équipe parlementaire à
-                        <a href="mailto:contact@depute.fr">contact@depute.fr</a>.
-                    </p>
-                </div>
-                <p class="agenda-update">
-                    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
-                </p>
             </div>
+
+            <div class="update-info">
+                <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+            </div>
+
+            <div class="invitation-block text-center mt-4">
+                <p class="invitation-text">
+                    Je me réjouis de vous rencontrer lors de ces événements. N'hésitez pas à venir échanger, même quelques minutes !
+                    Pour toute question sur l'agenda ou pour solliciter ma présence, laissez-moi un message.
+                </p>
+                <a href="#contact" class="btn btn-primary mt-3">Me contacter pour plus d'informations</a>
+            </div>
+        </div>
     </section>
 
 {% endblock %}

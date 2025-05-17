@@ -243,6 +243,13 @@
   border-color: var(--secondary-color, #e83e8c);
 }
 
+/* Update Info */
+.update-info {
+  text-align: right; /* Aligne le texte à droite */
+  margin-top: 1rem;  /* Optionnel : espace au-dessus */
+  font-size: 0.9rem; /* Ajustement de la taille du texte, si nécessaire */
+}
+
 /* Responsive */
 @media (max-width: 700px) {
   .agenda-filters {
