@@ -37,6 +37,8 @@ class AppFixtures extends Fixture
             $rencontre->setTitre($faker->sentence(3));
             $rencontre->setDescription($faker->paragraph(2));
             $rencontre->setDate($faker->dateTimeBetween('now', '+1 year'));
+            $rencontre->setCreatedAt(new \DateTimeImmutable($faker->dateTimeBetween('-20 days')->format('Y-m-d')));
+            $rencontre->setUpdatedAt(new \DateTimeImmutable($faker->dateTimeBetween('now')->format('Y-m-d')));
             $rencontre->setLieu($faker->address);
             $rencontre->setCommune($faker->randomElement(CommuneEnum::cases()));
             $rencontre->setType($faker->randomElement(RencontreEnum::cases()));

@@ -8,7 +8,7 @@
         <div class="container-circonscription">
             <div class="circonscription-content">
                 <h1>Agenda des rencontres </h1>
-                <p class="actu-subtitle">Retrouvez ici l’ensemble de mes déplacements, rendez-vous publics et rencontres citoyennes dans toute la circonscription. </p>
+                <p class="actu-subtitle">Retrouvez ici l'ensemble de mes déplacements, rendez-vous publics et rencontres citoyennes dans toute la circonscription. </p>
             </div>
         </div>
         <div class="rencontres-circonscription">
@@ -33,7 +33,6 @@
                         <option value="thonon">Thonon-les-Bains</option>
                         <option value="sallanches">Sallanches</option>
                         <option value="bonneville">Bonneville</option>
-                        <!-- Ajoute ici toutes les communes de la circonscription -->
                     </select>
                 </div>
                 <div class="agenda-cards">
@@ -51,76 +50,30 @@
                             </div>
                         </div>
                     </article>
-                    <article class="agenda-card">
-                        <div class="agenda-date">
-                            <span class="day">12</span>
-                            <span class="month">JUIN</span>
-                        </div>
-                        <div class="agenda-details">
-                            <h3>Réunion publique</h3>
-                            <p>Présentation des projets pour la vallée de l'Arve</p>
-                            <div class="agenda-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Cluses, Salle des fêtes</span>
+
+                    {% for rencontre in rencontres %}
+                        <article class="agenda-card" data-type="{{ rencontre.type.value }}" data-commune="{{ rencontre.commune.value }}">
+                            <div class="agenda-date">
+                                <span class="day">{{ rencontre.date|date('d') }}</span>
+                                <span class="month">{{ rencontre.date|date('F')|upper }}</span>
                             </div>
-                        </div>
-                    </article>
-                    <article class="agenda-card">
-                        <div class="agenda-date">
-                            <span class="day">12</span>
-                            <span class="month">JUIN</span>
-                        </div>
-                        <div class="agenda-details">
-                            <h3>Réunion publique</h3>
-                            <p>Présentation des projets pour la vallée de l'Arve</p>
-                            <div class="agenda-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Cluses, Salle des fêtes</span>
+                            <div class="agenda-details">
+                                <h3>{{ rencontre.titre }}</h3>
+                                <p> {{ rencontre.type.getLabel() }}</p>
+                                <p>{{ rencontre.description }}</p>
+                                <div class="agenda-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span> {{ rencontre.commune.getLabel() }} {{ rencontre.lieu }}</span>
+                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="agenda-card">
-                        <div class="agenda-date">
-                            <span class="day">12</span>
-                            <span class="month">JUIN</span>
-                        </div>
-                        <div class="agenda-details">
-                            <h3>Réunion publique</h3>
-                            <p>Présentation des projets pour la vallée de l'Arve</p>
-                            <div class="agenda-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Cluses, Salle des fêtes</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="agenda-card">
-                        <div class="agenda-date">
-                            <span class="day">12</span>
-                            <span class="month">JUIN</span>
-                        </div>
-                        <div class="agenda-details">
-                            <h3>Réunion publique</h3>
-                            <p>Présentation des projets pour la vallée de l'Arve</p>
-                            <div class="agenda-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Cluses, Salle des fêtes</span>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="agenda-card">
-                        <div class="agenda-date">
-                            <span class="day">12</span>
-                            <span class="month">JUIN</span>
-                        </div>
-                        <div class="agenda-details">
-                            <h3>Réunion publique</h3>
-                            <p>Présentation des projets pour la vallée de l'Arve</p>
-                            <div class="agenda-location">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Cluses, Salle des fêtes</span>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    {% endfor %}
+
+                {% if rencontres is empty %}
+                {% else %}
+                    <p class="no-events">Aucun événement à venir n'est programmé pour le moment.</p>
+                {% endfor %}
+
                 </div>
                 <div class="invitation-block text-center mt-4">
                     <p class="invitation-text">
@@ -130,12 +83,12 @@
                 </div>
                 <div class="agenda-contact mt-4">
                     <p>
-                        Pour toute question sur l’agenda ou pour solliciter la présence de votre député, contactez l’équipe parlementaire à
+                        Pour toute question sur l'agenda ou pour solliciter la présence de votre député, contactez l'équipe parlementaire à
                         <a href="mailto:contact@depute.fr">contact@depute.fr</a>.
                     </p>
                 </div>
                 <p class="agenda-update">
-                    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+                    <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
                 </p>
             </div>
         </section>
@@ -174,7 +127,7 @@
     });
   }
 });
-        </script>
+    </script>
 
 
 {% endblock %}

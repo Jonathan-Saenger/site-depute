@@ -16,28 +16,19 @@ class RencontreRepository extends ServiceEntityRepository
         parent::__construct($registry, Rencontre::class);
     }
 
-    //    /**
-    //     * @return Rencontre[] Returns an array of Rencontre objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Récupère les rendez-vous visibles et triés par date
+     */
 
-    //    public function findOneBySomeField($value): ?Rencontre
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+     public function findUpcomingRencontre(): array
+     {
+        return $this->createQueryBuilder('r')
+            ->where('r.visible = :visible')
+            ->andWhere('r.date >= :now')
+            ->setParameter('visible', true)
+            ->setParameter('now', new \DateTime())
+            ->orderBy('r.date', 'ASC')
+            ->getQuery()
+            ->getResult();
+     }
 }

@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
-use App\Repository\ArticleRepository;
+use App\Repository\RencontreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 
 final class RencontreController extends AbstractController
 {
     #[Route('/rencontre', name: 'app_rencontre')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(RencontreRepository $rencontreRepository): Response
     {
         return $this->render('pages/rencontre.html.twig', [
-            'controller_name' => 'RencontreController',
+            'rencontres' => $rencontreRepository->findUpcomingRencontre(),
         ]);
     }
 }

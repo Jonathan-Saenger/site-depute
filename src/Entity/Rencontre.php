@@ -101,7 +101,7 @@ class Rencontre
         return $this;
     }
 
-    public function getCommune(): ?string
+    public function getCommune(): ?CommuneEnum
     {
         return $this->commune;
     }
@@ -113,7 +113,7 @@ class Rencontre
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): ?RencontreEnum
     {
         return $this->type;
     }
