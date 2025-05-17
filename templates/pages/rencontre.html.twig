@@ -67,9 +67,7 @@
                                 </div>
                             </div>
                         </article>
-                    {% endfor %}
 
-                {% if rencontres is empty %}
                 {% else %}
                     <p class="no-events">Aucun événement à venir n'est programmé pour le moment.</p>
                 {% endfor %}
@@ -91,43 +89,6 @@
                     <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
                 </p>
             </div>
-        </section>
-
-        <script>
-        document.addEventListener('DOMContentLoaded', function () {
-  // Filtre par type d'événement
-  document.querySelectorAll('.btn-filter').forEach(btn => {
-    btn.addEventListener('click', function () {
-      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const type = this.getAttribute('data-type');
-      document.querySelectorAll('.agenda-card').forEach(card => {
-        if (type === 'all' || card.dataset.type === type) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Filtre par commune
-  const communeSelect = document.querySelector('.agenda-commune-filter');
-  if (communeSelect) {
-    communeSelect.addEventListener('change', function () {
-      const commune = this.value;
-      document.querySelectorAll('.agenda-card').forEach(card => {
-        const cardCommune = card.dataset.commune;
-        if (commune === 'all' || cardCommune === commune) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  }
-});
-    </script>
-
+    </section>
 
 {% endblock %}
