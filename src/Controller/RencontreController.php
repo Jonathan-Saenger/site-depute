@@ -14,7 +14,6 @@ final class RencontreController extends AbstractController
     {
         return $this->render('pages/rencontre.html.twig', [
             'controller_name' => 'RencontreController',
-            'articles' => $articleRepository->findPublishedArticles(),
         ]);
     }
 }

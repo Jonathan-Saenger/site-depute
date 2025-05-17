@@ -27,7 +27,6 @@ final class NewsController extends AbstractController
         $template = match ($category) {
             'circonscription' => 'pages/actualites/circonscription.html.twig',
             'assemblee' => 'pages/actualites/assemblee.html.twig',
-            default => throw $this->createNotFoundException('Category not found'),
         };
 
         return $this->render($template, [
