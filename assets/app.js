@@ -14,6 +14,9 @@ import './styles/components/newsletter.css';
 
 // Fonction d'initialisation principale (compatible Turbo)
 function initSiteScripts() {
+    // Initialisation du filtre de rencontres
+    initRencontreFilter();
+
     // Navbar pour mobile
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
@@ -179,6 +182,101 @@ function initSiteScripts() {
             }, 3000);
         });
     }
+}
+
+/**
+ * Gestion du filtrage des rencontres sans rechargement de page
+ */
+function initRencontreFilter() {
+    const form = document.getElementById('rencontre-filter-form');
+    if (!form) return;
+
+    const communeSelect = document.getElementById('commune-select');
+    const typeSelect = document.getElementById('type-select');
+    const filterButton = document.getElementById('filter-button');
+    const resetButton = document.getElementById('reset-filter');
+    const agendaCards = document.querySelectorAll('.agenda-card');
+    const agendaCardsContainer = document.querySelector('.agenda-cards');
+    const noEventsMessage = 'Aucun événement à venir n\'est programmé pour le moment.';
+
+    // Filtrage des événements
+    function filterEvents() {
+        const selectedCommune = communeSelect.value;
+        const selectedType = typeSelect.value;
+        let visibleCount = 0;
+
+        // Mettre à jour l'URL pour permettre le partage et la navigation
+        updateUrl(selectedCommune, selectedType);
+
+        // Montrer/cacher le bouton de réinitialisation
+        resetButton.style.display = (selectedCommune || selectedType) ? '' : 'none';
+
+        // Filtrer les cartes en fonction des critères sélectionnés
+        agendaCards.forEach(card => {
+            const cardCommune = card.dataset.commune;
+            const cardType = card.dataset.type;
+
+            const communeMatch = !selectedCommune || cardCommune === selectedCommune;
+            const typeMatch = !selectedType || cardType === selectedType;
+
+            if (communeMatch && typeMatch) {
+                card.style.display = '';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Afficher un message s'il n'y a pas d'événements correspondants
+        let noEventsElement = agendaCardsContainer.querySelector('.no-events');
+
+        if (visibleCount === 0) {
+            if (!noEventsElement) {
+                noEventsElement = document.createElement('p');
+                noEventsElement.className = 'no-events';
+                noEventsElement.textContent = noEventsMessage;
+                agendaCardsContainer.appendChild(noEventsElement);
+            }
+            noEventsElement.style.display = '';
+        } else if (noEventsElement) {
+            noEventsElement.style.display = 'none';
+        }
+    }
+
+    // Mettre à jour l'URL avec les paramètres de filtrage
+    function updateUrl(commune, type) {
+        const url = new URL(window.location);
+
+        if (commune) {
+            url.searchParams.set('commune', commune);
+        } else {
+            url.searchParams.delete('commune');
+        }
+
+        if (type) {
+            url.searchParams.set('type', type);
+        } else {
+            url.searchParams.delete('type');
+        }
+
+        window.history.pushState({}, '', url.toString());
+    }
+
+    // Activer le filtrage automatique lors de la modification des sélecteurs
+    communeSelect.addEventListener('change', filterEvents);
+    typeSelect.addEventListener('change', filterEvents);
+
+    // On peut masquer le bouton de filtre puisqu'il n'est plus nécessaire
+    if (filterButton) {
+        filterButton.style.display = 'none';
+    }
+
+    // Événement de clic pour le bouton de réinitialisation
+    resetButton.addEventListener('click', () => {
+        communeSelect.value = '';
+        typeSelect.value = '';
+        filterEvents();
+    });
 }
 
 // Initialisation pour navigation classique ET Turbo

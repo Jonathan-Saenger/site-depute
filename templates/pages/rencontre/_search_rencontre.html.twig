@@ -1,0 +1,40 @@
+<div class="recherche-container">
+    <h3 class="search-title">Filtrer les rencontres</h3>
+    <form id="rencontre-filter-form" class="filter-form">
+        <div class="filter-group">
+            <div class="form-group">
+                <label for="commune-select">Commune</label>
+                <select id="commune-select" name="commune" class="form-select">
+                    <option value="">Toutes les communes</option>
+                    {% for commune in communes %}
+                        {% set communeValue = commune|trim %}
+                        <option value="{{ communeValue }}" {{ selected_commune == communeValue ? 'selected' : '' }}>
+                            {{ communeLabels[commune] ?? commune }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="type-select">Type d'événement</label>
+                <select id="type-select" name="type" class="form-select">
+                    <option value="">Tous les types</option>
+                    {% for type in types %}
+                        <option value="{{ type }}" {{ selected_type == type ? 'selected' : '' }}>
+                            {{ typeLabels[type] ?? type }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="buttons-group">
+                <button type="button" id="filter-button" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Filtrer
+                </button>
+                <button type="button" id="reset-filter" class="btn btn-outline-secondary" {{ not (selected_commune or selected_type) ? 'style="display: none;"' : '' }}>
+                    <i class="fas fa-times"></i> Réinitialiser
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -22,21 +22,9 @@
         <div class="container">
             <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
 
+            {% include 'pages/rencontre/_search_rencontre.html.twig' %}
+
             <div class="agenda-cards">
-                <article class="agenda-card" data-type="citoyennes" data-commune="annecy">
-                    <div class="agenda-date">
-                        <span class="day">25</span>
-                        <span class="month">DECEMBRE</span>
-                    </div>
-                    <div class="agenda-details">
-                        <h3>Visite d'Annecy</h3>
-                        <p>Rencontre avec les habitants et les commerçants du centre-ville</p>
-                        <div class="agenda-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Annecy, Place de l'Hôtel de Ville</span>
-                        </div>
-                    </div>
-                </article>
 
                 {% for rencontre in rencontres %}
                     <article class="agenda-card" data-type="{{ rencontre.type.value }}" data-commune="{{ rencontre.commune.value }}">
@@ -46,6 +34,7 @@
                         </div>
                         <div class="agenda-details">
                             <h3>{{ rencontre.titre }}</h3>
+                            <p class="agenda-type">{{ rencontre.type.getLabel() }}</p>
                             <p>{{ rencontre.description }}</p>
                             <div class="agenda-location">
                                 <i class="fas fa-map-marker-alt"></i>
