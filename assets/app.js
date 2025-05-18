@@ -12,60 +12,66 @@ import './styles/components/priorities.css';
 import './styles/components/work.css';
 import './styles/components/newsletter.css';
 
-// Fonction d'initialisation principale (compatible Turbo)
-function initSiteScripts() {
-    // Initialisation du filtre de rencontres
+/**
+ * Fonction d'initialisation principale (compatible Turbo)
+ */
+const initSiteScripts = () => {
+    // Initialiser tous les modules de fonctionnalités
+    initMobileNavbar();
+    initHeaderScrollEffect();
+    initAnimations();
+    initNewsDropdown();
+    initNewsSearch();
+    initNewsletterForm();
     initRencontreFilter();
+};
 
-    // Navbar pour mobile
+/**
+ * Gestion de la navbar mobile
+ */
+const initMobileNavbar = () => {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navbar = document.querySelector('.navbar');
+    if (!mobileMenuToggle || !navbar) return;
 
-    if (mobileMenuToggle && navbar) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenuToggle.classList.toggle('active');
-            navbar.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
-        });
-
-        document.addEventListener('click', function(event) {
-            if (
-                navbar.classList.contains('active') &&
-                !event.target.closest('.navbar') &&
-                !event.target.closest('.mobile-menu-toggle')
-            ) {
-                mobileMenuToggle.classList.remove('active');
-                navbar.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-
-    // Effet de défilement lisse sur le header
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.site-header');
-        if (header) {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        }
+    // Ouvrir/fermer le menu
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenuToggle.classList.toggle('active');
+        navbar.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
     });
 
-    // Animation on scroll
-    function animateOnScroll() {
-        const elements = document.querySelectorAll('.news-card, .priority-card, .stat-item');
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            if (elementPosition < windowHeight - 100) {
-                element.classList.add('visible');
-            }
-        });
-    }
+    // Fermer le menu en cliquant à l'extérieur
+    document.addEventListener('click', (event) => {
+        if (
+            navbar.classList.contains('active') &&
+            !event.target.closest('.navbar') &&
+            !event.target.closest('.mobile-menu-toggle')
+        ) {
+            mobileMenuToggle.classList.remove('active');
+            navbar.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    });
+};
 
-    // Ajout du CSS pour l'animation si non déjà présent
+/**
+ * Effet de défilement sur le header
+ */
+const initHeaderScrollEffect = () => {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+};
+
+/**
+ * Animations basées sur le scroll
+ */
+const initAnimations = () => {
+    // Définir les animations CSS si non déjà présentes
     if (!document.getElementById('site-animation-style')) {
         const style = document.createElement('style');
         style.id = 'site-animation-style';
@@ -104,181 +110,194 @@ function initSiteScripts() {
         document.head.appendChild(style);
     }
 
-    // Run animation on page load and scroll
-    window.addEventListener('load', animateOnScroll);
-    window.addEventListener('scroll', animateOnScroll);
+    // Fonction pour animer les éléments
+    const animateElements = () => {
+        const elements = document.querySelectorAll('.news-card, .priority-card, .stat-item');
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
 
-    // Dropdown actualités (menu déroulant des actus)
+            if (elementPosition < windowHeight - 100) {
+                element.classList.add('visible');
+            }
+        });
+    };
+
+    // Lancer l'animation au chargement et au défilement
+    window.addEventListener('load', animateElements);
+    window.addEventListener('scroll', animateElements);
+};
+
+/**
+ * Menu déroulant des actualités
+ */
+const initNewsDropdown = () => {
     const dropdown = document.querySelector('.dropdown-news');
-    if (dropdown) {
-        const toggle = dropdown.querySelector('.dropdown-toggle');
-        toggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-        });
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
-        });
-    }
+    if (!dropdown) return;
 
-    // Filtrage des articles par titre
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+    toggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) dropdown.classList.remove('open');
+    });
+};
+
+/**
+ * Filtre de recherche d'actualités
+ */
+const initNewsSearch = () => {
     const searchInput = document.querySelector('.search-input');
     const newsCards = document.querySelectorAll('.news-card');
     const noArticlesMessage = document.getElementById('no-articles-message');
 
-    if (searchInput && newsCards && noArticlesMessage) {
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase();
-            let foundArticles = false;
+    if (!searchInput || !newsCards.length || !noArticlesMessage) return;
 
-            newsCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                if (title.includes(query)) {
-                    card.style.display = '';
-                    foundArticles = true;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        let foundArticles = false;
 
-            noArticlesMessage.style.display = foundArticles ? 'none' : 'block';
+        newsCards.forEach(card => {
+            const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const isVisible = title.includes(query);
+            card.style.display = isVisible ? '' : 'none';
+            if (isVisible) foundArticles = true;
         });
-    }
 
+        noArticlesMessage.style.display = foundArticles ? 'none' : 'block';
+    });
+};
+
+/**
+ * Formulaire d'inscription à la newsletter
+ */
+const initNewsletterForm = () => {
     const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+    if (!newsletterForm) return;
 
-            // Get email value
-            const emailInput = this.querySelector('input[type="email"]');
-            const email = emailInput.value.trim();
+    newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-            // Validation simple d'email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Veuillez entrer une adresse email valide.');
-                return;
-            }
+        // Validation de l'email
+        const emailInput = newsletterForm.querySelector('input[type="email"]');
+        const email = emailInput?.value.trim() || '';
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Efface le champ
-            emailInput.value = '';
+        if (!emailRegex.test(email)) {
+            alert('Veuillez entrer une adresse email valide.');
+            return;
+        }
 
-            // Affiche le message de succès
-            let successMessage = this.querySelector('.success-message');
+        // Réinitialiser et afficher le succès
+        emailInput.value = '';
+
+        // Afficher le message de confirmation
+        const showSuccessMessage = () => {
+            let successMessage = newsletterForm.querySelector('.success-message');
+
             if (!successMessage) {
                 successMessage = document.createElement('div');
                 successMessage.className = 'success-message';
-                successMessage.style.color = '#0066cc';
-                successMessage.style.marginTop = '1rem';
-                successMessage.style.fontWeight = '500';
-                this.appendChild(successMessage);
+                Object.assign(successMessage.style, {
+                    color: '#0066cc',
+                    marginTop: '1rem',
+                    fontWeight: '500'
+                });
+                newsletterForm.appendChild(successMessage);
             }
-            successMessage.textContent = 'Merci pour votre inscription !';
 
-            // Retire le message après 3 secondes
-            setTimeout(() => {
-                if (successMessage) successMessage.remove();
-            }, 3000);
-        });
-    }
-}
+            successMessage.textContent = 'Merci pour votre inscription !';
+            setTimeout(() => successMessage?.remove(), 3000);
+        };
+
+        showSuccessMessage();
+    });
+};
 
 /**
- * Gestion du filtrage des rencontres sans rechargement de page
+ * Filtrage des rencontres
  */
-function initRencontreFilter() {
+const initRencontreFilter = () => {
     const form = document.getElementById('rencontre-filter-form');
     if (!form) return;
 
-    const communeSelect = document.getElementById('commune-select');
-    const typeSelect = document.getElementById('type-select');
-    const filterButton = document.getElementById('filter-button');
-    const resetButton = document.getElementById('reset-filter');
-    const agendaCards = document.querySelectorAll('.agenda-card');
-    const agendaCardsContainer = document.querySelector('.agenda-cards');
+    // Sélectionner les éléments DOM nécessaires
+    const elements = {
+        communeSelect: document.getElementById('commune-select'),
+        typeSelect: document.getElementById('type-select'),
+        filterButton: document.getElementById('filter-button'),
+        resetButton: document.getElementById('reset-filter'),
+        cards: document.querySelectorAll('.agenda-card'),
+        container: document.querySelector('.agenda-cards')
+    };
+
     const noEventsMessage = 'Aucun événement à venir n\'est programmé pour le moment.';
 
-    // Filtrage des événements
-    function filterEvents() {
-        const selectedCommune = communeSelect.value;
-        const selectedType = typeSelect.value;
+    // Mise à jour de l'URL pour conserver les paramètres de filtrage
+    const updateUrl = (commune, type) => {
+        const url = new URL(window.location);
+
+        commune ? url.searchParams.set('commune', commune) : url.searchParams.delete('commune');
+        type ? url.searchParams.set('type', type) : url.searchParams.delete('type');
+
+        window.history.pushState({}, '', url.toString());
+    };
+
+    // Fonction de filtrage principale
+    const filterEvents = () => {
+        const selectedCommune = elements.communeSelect.value;
+        const selectedType = elements.typeSelect.value;
         let visibleCount = 0;
 
-        // Mettre à jour l'URL pour permettre le partage et la navigation
+        // Mise à jour URL et affichage du bouton de réinitialisation
         updateUrl(selectedCommune, selectedType);
+        elements.resetButton.style.display = (selectedCommune || selectedType) ? '' : 'none';
 
-        // Montrer/cacher le bouton de réinitialisation
-        resetButton.style.display = (selectedCommune || selectedType) ? '' : 'none';
+        // Filtrer les cartes
+        elements.cards.forEach(card => {
+            const matches =
+                (!selectedCommune || card.dataset.commune === selectedCommune) &&
+                (!selectedType || card.dataset.type === selectedType);
 
-        // Filtrer les cartes en fonction des critères sélectionnés
-        agendaCards.forEach(card => {
-            const cardCommune = card.dataset.commune;
-            const cardType = card.dataset.type;
-
-            const communeMatch = !selectedCommune || cardCommune === selectedCommune;
-            const typeMatch = !selectedType || cardType === selectedType;
-
-            if (communeMatch && typeMatch) {
-                card.style.display = '';
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
+            card.style.display = matches ? '' : 'none';
+            if (matches) visibleCount++;
         });
 
-        // Afficher un message s'il n'y a pas d'événements correspondants
-        let noEventsElement = agendaCardsContainer.querySelector('.no-events');
+        // Gestion du message "aucun événement"
+        let noEventsElement = elements.container.querySelector('.no-events');
 
         if (visibleCount === 0) {
             if (!noEventsElement) {
                 noEventsElement = document.createElement('p');
                 noEventsElement.className = 'no-events';
                 noEventsElement.textContent = noEventsMessage;
-                agendaCardsContainer.appendChild(noEventsElement);
+                elements.container.appendChild(noEventsElement);
             }
             noEventsElement.style.display = '';
         } else if (noEventsElement) {
             noEventsElement.style.display = 'none';
         }
+    };
+
+    // Cacher le bouton de filtre, car filtrage automatique
+    if (elements.filterButton) {
+        elements.filterButton.style.display = 'none';
     }
 
-    // Mettre à jour l'URL avec les paramètres de filtrage
-    function updateUrl(commune, type) {
-        const url = new URL(window.location);
-
-        if (commune) {
-            url.searchParams.set('commune', commune);
-        } else {
-            url.searchParams.delete('commune');
-        }
-
-        if (type) {
-            url.searchParams.set('type', type);
-        } else {
-            url.searchParams.delete('type');
-        }
-
-        window.history.pushState({}, '', url.toString());
-    }
-
-    // Activer le filtrage automatique lors de la modification des sélecteurs
-    communeSelect.addEventListener('change', filterEvents);
-    typeSelect.addEventListener('change', filterEvents);
-
-    // On peut masquer le bouton de filtre puisqu'il n'est plus nécessaire
-    if (filterButton) {
-        filterButton.style.display = 'none';
-    }
-
-    // Événement de clic pour le bouton de réinitialisation
-    resetButton.addEventListener('click', () => {
-        communeSelect.value = '';
-        typeSelect.value = '';
+    // Ajouter les écouteurs d'événements
+    elements.communeSelect.addEventListener('change', filterEvents);
+    elements.typeSelect.addEventListener('change', filterEvents);
+    elements.resetButton.addEventListener('click', () => {
+        elements.communeSelect.value = '';
+        elements.typeSelect.value = '';
         filterEvents();
     });
-}
+};
 
-// Initialisation pour navigation classique ET Turbo
-document.addEventListener('DOMContentLoaded', initSiteScripts);
-document.addEventListener('turbo:load', initSiteScripts);
+// Initialisation au chargement de la page (avec gestion Turbo)
+['DOMContentLoaded', 'turbo:load'].forEach(event => {
+    document.addEventListener(event, initSiteScripts);
+});
