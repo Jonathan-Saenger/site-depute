@@ -12,7 +12,7 @@ final class RencontreController extends AbstractController
     #[Route('/rencontre', name: 'app_rencontre')]
     public function index(RencontreRepository $rencontreRepository): Response
     {
-        return $this->render('pages/rencontre.html.twig', [
+        return $this->render('pages/rencontre/rencontre.html.twig', [
             'rencontres' => $rencontreRepository->findUpcomingRencontre(),
         ]);
     }

@@ -21,20 +21,7 @@
     <section class="agenda">
         <div class="container">
             <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
-            <div class="agenda-filters">
-                <button class="btn btn-filter active" data-type="all">Tous</button>
-                <button class="btn btn-filter" data-type="citoyennes">Rencontres citoyennes</button>
-                <button class="btn btn-filter" data-type="publiques">Réunions publiques</button>
-                <button class="btn btn-filter" data-type="deplacements">Déplacements</button>
-                <select class="agenda-commune-filter" aria-label="Filtrer par commune">
-                    <option value="all">Toutes les communes</option>
-                    <option value="annecy">Annecy</option>
-                    <option value="cluses">Cluses</option>
-                    <option value="thonon">Thonon-les-Bains</option>
-                    <option value="sallanches">Sallanches</option>
-                    <option value="bonneville">Bonneville</option>
-                </select>
-            </div>
+
             <div class="agenda-cards">
                 <article class="agenda-card" data-type="citoyennes" data-commune="annecy">
                     <div class="agenda-date">
@@ -59,7 +46,6 @@
                         </div>
                         <div class="agenda-details">
                             <h3>{{ rencontre.titre }}</h3>
-                            <p> {{ rencontre.type.getLabel() }}</p>
                             <p>{{ rencontre.description }}</p>
                             <div class="agenda-location">
                                 <i class="fas fa-map-marker-alt"></i>

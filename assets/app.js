@@ -179,38 +179,6 @@ function initSiteScripts() {
             }, 3000);
         });
     }
-
-    // Filtre par types de rencontres
-    document.querySelectorAll('.btn-filter').forEach(btn => {
-        btn.addEventListener('click', function () {
-            document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const type = this.getAttribute('data-type');
-            document.querySelectorAll('.agenda-card').forEach(card => {
-                if (type === 'all' || card.dataset.type === type) {
-                card.style.display = '';
-                } else {
-                card.style.display = 'none';
-                }
-            });
-        });
-    });
-
-    // Filtre par communes
-    const communeSelect = document.querySelector('.agenda-commune-filter');
-    if (communeSelect) {
-        communeSelect.addEventListener('change', function () {
-            const commune = this.value;
-            document.querySelectorAll('.agenda-card').forEach(card => {
-                const cardCommune = card.dataset.commune;
-                if (commune === 'all' || cardCommune === commune) {
-                    card.style.display = '';
-                    } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    };
 }
 
 // Initialisation pour navigation classique ET Turbo

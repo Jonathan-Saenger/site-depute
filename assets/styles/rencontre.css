@@ -193,56 +193,6 @@
   margin-top: 2.5rem;
 }
 
-/* Ajout à rencontre.css */
-
-/* Style des filtres principaux */
-.agenda-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-filter {
-  background: var(--white);
-  border: 1.5px solid var(--primary-color, #003e7e);
-  color: var(--primary-color, #003e7e);
-  border-radius: 999px;
-  padding: 0.5rem 1.3rem;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-
-.btn-filter.active,
-.btn-filter:hover {
-  background: var(--primary-color, #003e7e);
-  color: var(--white);
-  border-color: var(--primary-color, #003e7e);
-}
-
-/* Filtre par commune */
-.agenda-commune-filter {
-  margin-left: 1.5rem;
-  min-width: 220px;
-  border-radius: 999px;
-  border: 1.5px solid var(--primary-color, #003e7e);
-  padding: 0.45rem 1.1rem;
-  font-size: 1rem;
-  color: var(--primary-color, #003e7e);
-  background: var(--white);
-  font-weight: 500;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.agenda-commune-filter:focus {
-  border-color: var(--secondary-color, #e83e8c);
-}
-
 /* Update Info */
 .update-info {
   text-align: right; /* Aligne le texte à droite */
