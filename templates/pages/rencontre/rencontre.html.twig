@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rencontres en circonscription - Eric François{% endblock %}
+
+{% block body %}
+
+    <section class="hero-section hero-agenda">
+        <div class="container-circonscription">
+            <div class="circonscription-content">
+                <h1>Agenda des rencontres </h1>
+                <p class="actu-subtitle">Retrouvez ici l'ensemble de mes déplacements, rendez-vous publics et rencontres citoyennes dans toute la circonscription. </p>
+            </div>
+        </div>
+        <div class="rencontres-circonscription">
+            <p>
+                Proximité &ndash; Dialogue &ndash; Écoute &ndash; Engagement &ndash; Rencontres citoyennes &ndash; Échanges &ndash; Présence sur le terrain &ndash; Actions locales &ndash; Cohésion &ndash; Solidarité &ndash; Initiatives &ndash; Vie locale
+            </p>
+        </div>
+    </section>
+
+    <section class="agenda">
+        <div class="container">
+            <h2 class="rencontres-title">Mes prochains rendez-vous près de chez vous</h2>
+
+            {% include 'pages/rencontre/_search_rencontre.html.twig' %}
+
+            <div class="agenda-cards">
+
+                {% for rencontre in rencontres %}
+                    <article class="agenda-card" data-type="{{ rencontre.type.value }}" data-commune="{{ rencontre.commune.value }}">
+                        <div class="agenda-date">
+                            <span class="day">{{ rencontre.date|date('d') }}</span>
+                            <span class="month">{{ rencontre.date|date('F')|upper }}</span>
+                        </div>
+                        <div class="agenda-details">
+                            <h3>{{ rencontre.titre }}</h3>
+                            <p class="agenda-type">{{ rencontre.type.getLabel() }}</p>
+                            <p>{{ rencontre.description }}</p>
+                            <div class="agenda-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span> {{ rencontre.commune.getLabel() }} {{ rencontre.lieu }}</span>
+                            </div>
+                        </div>
+                    </article>
+                {% else %}
+                    <p class="no-events">Aucun événement à venir n'est programmé pour le moment.</p>
+                {% endfor %}
+            </div>
+
+            <div class="update-info">
+                <i class="fas fa-info-circle"></i> Dernière mise à jour : {{ "now"|date("d/m/Y") }}
+            </div>
+
+            <div class="invitation-block text-center mt-4">
+                <p class="invitation-text">
+                    Je me réjouis de vous rencontrer lors de ces événements. N'hésitez pas à venir échanger, même quelques minutes !
+                    Pour toute question sur l'agenda ou pour solliciter ma présence, laissez-moi un message.
+                </p>
+                <a href="#contact" class="btn btn-primary mt-3">Me contacter pour plus d'informations</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

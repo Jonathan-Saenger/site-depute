@@ -1,0 +1,274 @@
+.hero-agenda {
+  background-image: url('/images/eric_francois_agenda.png');
+  background-size: cover;
+  background-position: center 15%;
+  background-repeat: no-repeat;
+}
+
+.hero-circonscription::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.65; }
+}
+
+
+.rencontres-circonscription {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.318);
+  padding: 10px 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  z-index: 2;
+}
+
+.rencontres-circonscription p {
+  margin: 0;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  animation: scrollText 20s linear infinite;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.circonscription-content-rencontre {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  background-color: rgba(240, 248, 255, 0.65);
+  border-radius: 8px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.circonscription-content-rencontre h1 {
+  color: var(--primary-color, #003e7e);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.agenda {
+  padding: 3rem 0;
+  background-color: #f8f9fa;
+}
+
+.agenda-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.agenda-card {
+  display: flex;
+  background-color: #ffffff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.agenda-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #003e7e;
+  color: #ffffff;
+  text-align: center;
+  min-width: 80px;
+}
+
+.agenda-date .day {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.agenda-date .month {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.agenda-details {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.agenda-details h3 {
+  font-size: 1.3rem;
+  color: #003e7e;
+  margin-bottom: 0.5rem;
+}
+
+.agenda-details p {
+  margin-bottom: 0.5rem;
+  color: #6c757d;
+}
+
+.agenda-location {
+  display: flex;
+  align-items: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.agenda-location i {
+  margin-right: 5px;
+  color: #e83e8c;
+}
+
+.rencontres-title {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #003e7e;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.rencontres-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #003e7e;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.invitation-block {
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.invitation-text {
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  background: rgba(240, 248, 255, 0.7);
+  display: inline-block;
+  padding: 1.2rem 2.2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,62,126,0.06);
+}
+
+.mt-3 {
+  margin-top: 1.2rem;
+}
+
+.mt-4 {
+  margin-top: 2.5rem;
+}
+
+/* Update Info */
+.update-info {
+  text-align: right; /* Aligne le texte à droite */
+  margin-top: 1rem;  /* Optionnel : espace au-dessus */
+  font-size: 0.9rem; /* Ajustement de la taille du texte, si nécessaire */
+}
+
+    .recherche-container {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .search-title {
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        color: #495057;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        align-items: flex-end;
+    }
+
+    .form-group {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .buttons-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    /* Styles pour les éléments select */
+.form-group select, .form-select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group select:focus, .form-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Style pour les boutons */
+.buttons-group button, .buttons-group a {
+    padding: 8px 16px;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .agenda-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .agenda-commune-filter {
+    margin-left: 0;
+    width: 100%;
+  }
+}
