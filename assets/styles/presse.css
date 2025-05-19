@@ -1,0 +1,101 @@
+/* Section principale */
+.presse-section {
+  background: var(--background-light, #f8fafd);
+  padding: 3rem 0 2rem 0;
+  min-height: 100vh;
+}
+
+.presse-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.presse-title {
+  font-size: 2.2rem;
+  color: var(--primary-color, #0066cc);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.presse-intro {
+  color: var(--text-light, #666);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.presse-archives {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.presse-article {
+  background: var(--background-white, #fff);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,102,204,0.07);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border-left: 5px solid var(--primary-color, #0066cc);
+  position: relative;
+}
+.presse-article:hover {
+  box-shadow: 0 8px 32px rgba(0,102,204,0.13);
+  transform: translateY(-4px) scale(1.01);
+  border-left-color: var(--accent-color, #F8C200);
+}
+
+.presse-article-meta {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.98rem;
+  color: var(--primary-dark, #004e9e);
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+
+.presse-article-title {
+  font-size: 1.25rem;
+  color: var(--primary-color, #0066cc);
+  margin: 0.5rem 0 0.7rem 0;
+  font-weight: 600;
+}
+
+.presse-article-excerpt {
+  color: var(--text-color, #333);
+  font-size: 1.08rem;
+  margin-bottom: 1.2rem;
+  line-height: 1.6;
+}
+
+.presse-link {
+  align-self: flex-start;
+  color: var(--primary-color, #0066cc);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid var(--primary-color, #0066cc);
+  transition: color 0.2s, border-color 0.2s;
+  margin-top: auto;
+}
+.presse-link:hover {
+  color: var(--accent-color, #F8C200);
+  border-bottom-color: var(--accent-color, #F8C200);
+}
+
+@media (max-width: 600px) {
+  .presse-archives {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .presse-article {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .presse-title {
+    font-size: 1.4rem;
+  }
+}

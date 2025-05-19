@@ -5,6 +5,7 @@ import './styles/base.css';
 import './styles/layout.css';
 import './styles/rencontre.css';
 import './styles/depute.css';
+import './styles/presse.css';
 import './styles/components/footer.css';
 import './styles/components/hero.css';
 import './styles/components/news.css';

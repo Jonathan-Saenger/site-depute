@@ -28,4 +28,10 @@ final class HomeController extends AbstractController
     {
         return $this->render('pages/contact.html.twig');
     }
+
+    #[Route ('/presse', name: 'app_presse')]
+    public function press (): Response
+    {
+        return $this->render('pages/presse.html.twig');
+    }
 }
