@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Député – Eric Francois{% endblock %}
+
+{% block body %}
+<section class="depute-section">
+    <div class="depute-container">
+        <div class="depute-header">
+            <div class="depute-photo">
+                <img src="{{ asset('images/depute_eric_francois.png') }}" alt="Éric Francois" />
+            </div>
+            <div class="depute-intro">
+                <h1>Éric Francois</h1>
+                <h2>Député de la 7<sup>e</sup> circonscription du Haut-Rhin</h2>
+                <p class="depute-fonction">Membre de la commission des Affaires Économiques</p>
+            </div>
+        </div>
+        <div class="depute-main-layout">
+            <div class="depute-main-left">
+                <div class="depute-bio">
+                    <h3>À propos de moi</h3>
+                    <p>
+                        Originaire et habitant de la 7<sup>e</sup> circonscription du Haut-Rhin, je suis profondément attaché à notre territoire, à ses habitants et à ses valeurs. Mon engagement politique est né de mon parcours local, de mon implication dans la vie associative et de ma volonté de défendre les intérêts de notre région à l’Assemblée nationale.
+                    </p>
+                    <p>
+                        Chaque jour, je m’efforce d’être un relais fidèle de vos préoccupations, de vos initiatives et de vos espoirs. Je crois en la force du dialogue, de la proximité et de l’action concrète pour faire avancer notre circonscription et améliorer la vie de chacun. Mon ancrage local est la source de mon engagement et la boussole de mon action.
+                    </p>
+                </div>
+                <div class="depute-valeurs">
+                    <h3>Mes valeurs</h3>
+                    <ul>
+                        <li><i class="fas fa-handshake"></i> Proximité &amp; dialogue</li>
+                        <li><i class="fas fa-balance-scale"></i> Justice &amp; équité</li>
+                        <li><i class="fas fa-leaf"></i> Développement durable</li>
+                        <li><i class="fas fa-users"></i> Solidarité &amp; engagement</li>
+                        <li><i class="fas fa-lightbulb"></i> Innovation &amp; avenir</li>
+                    </ul>
+                </div>
+                <div class="depute-contact">
+                    <h3>Contact</h3>
+                    <p>
+                        Une question, une suggestion, un projet à partager ?<br>
+                        <a href="{{ path('app_contact') }}" class="btn btn-primary">Me contacter</a>
+                    </p>
+                </div>
+            </div>
+            <aside class="depute-main-right">
+                <div class="depute-assemblee">
+                    <h3>L’Assemblée nationale</h3>
+                    <p>
+                        L’Assemblée nationale est l’une des deux chambres du Parlement français. Elle représente le peuple et vote les lois, contrôle l’action du gouvernement et débat des grands enjeux de la Nation. En tant que député, j’y porte la voix de notre circonscription, en restant fidèle à nos réalités locales et à nos attentes.
+                    </p>
+                    <p>
+                        Je siège au sein de la commission des Affaires Économiques, où je défends les intérêts de notre territoire, en particulier sur les sujets liés à l’emploi, à l’agriculture, à l’industrie et à l’innovation.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

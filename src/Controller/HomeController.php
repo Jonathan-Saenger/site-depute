@@ -16,4 +16,16 @@ final class HomeController extends AbstractController
             'articles' => $articleRepository->findPublishedArticles(),
         ]);
     }
+
+    #[Route('/depute', name: 'app_depute')]
+    public function depute(): Response
+    {
+        return $this->render('pages/depute.html.twig');
+    }
+
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(): Response
+    {
+        return $this->render('pages/contact.html.twig');
+    }
 }
