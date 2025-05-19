@@ -1,20 +1,37 @@
 .depute-section {
   background: var(--background-white, #fff);
   padding: 3rem 0 2rem 0;
+  position: relative;
+  /* Dégradé subtil en haut */
+  background-image: linear-gradient(180deg, var(--background-light, #f8fafd) 0 20%, transparent 100%);
+}
+
+.depute-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(90deg, var(--primary-color, #0066cc) 0%, var(--accent-color, #F8C200) 100%);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .depute-container {
-  max-width: 900px;
+  max-width: 1200px; /* Augmente la largeur max */
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem; /* Réduit le padding latéral */
 }
 
 .depute-header {
   display: flex;
   align-items: center;
+  justify-content: center; /* Ajouté pour centrer horizontalement */
   gap: 2.5rem;
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .depute-photo {
@@ -23,8 +40,9 @@
   height: 180px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,102,204,0.08);
-  background: var(--background-light, #f8fafd);
+  box-shadow: 0 8px 32px rgba(0,102,204,0.10);
+  border: 4px solid var(--primary-color, #0066cc);
+  background: linear-gradient(135deg, var(--background-light, #f8fafd) 60%, var(--accent-color, #F8C200) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,6 +60,18 @@
   font-size: 2.2rem;
   color: var(--primary-dark, #004e9e);
   margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.depute-intro h1::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color, #0066cc), var(--accent-color, #F8C200));
+  border-radius: 2px;
+  margin: 0.5rem auto 0 auto;
 }
 
 .depute-intro h2 {
@@ -83,6 +113,8 @@
   list-style: none;
   padding: 0;
   margin: 0 0 2.5rem 0;
+  position: relative;
+  z-index: 1;
 }
 
 .depute-valeurs li {
@@ -91,11 +123,16 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  background: linear-gradient(90deg, var(--background-light, #f8fafd) 60%, var(--accent-color, #F8C200) 100%);
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  box-shadow: 0 1px 4px rgba(0,102,204,0.04);
+  transition: background 0.2s;
 }
 
-.depute-valeurs i {
-  color: var(--primary-color, #0066cc);
-  font-size: 1.2em;
+.depute-valeurs li:hover {
+  background: linear-gradient(90deg, var(--accent-color, #F8C200) 0%, var(--primary-color, #0066cc) 100%);
+  color: #fff;
 }
 
 .depute-contact {
@@ -106,25 +143,50 @@
   margin-top: 1rem;
   padding: 0.7rem 2.2rem;
   font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(0,102,204,0.08);
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+.depute-contact .btn:hover {
+  background: var(--accent-color, #F8C200);
+  color: var(--primary-color, #0066cc);
+  box-shadow: 0 4px 16px rgba(0,102,204,0.12);
 }
 
 .depute-main-layout {
   display: flex;
   gap: 2.5rem;
   margin-top: 2.5rem;
+  width: 100%;
 }
 
 .depute-main-left {
-  flex: 2 1 0%;
+  flex: 2.2 1 0%; /* Légèrement plus large */
   background: var(--background-white, #fff);
   border-radius: 18px;
   box-shadow: 0 2px 12px rgba(0,102,204,0.04);
   padding: 2rem 2rem 2rem 2rem;
   min-width: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.depute-main-left::before {
+  content: '\f0e7'; /* FontAwesome lightbulb */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: var(--accent-color, #F8C200);
+  font-size: 3.5rem;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .depute-main-right {
-  flex: 1 1 0%;
+  flex: 1.1 1 0%; /* Légèrement plus large */
   background: var(--background-light, #f8fafd);
   border-radius: 18px;
   box-shadow: 0 2px 12px rgba(0,102,204,0.06);
@@ -135,6 +197,22 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.depute-main-right::before {
+  content: '\f19c'; /* FontAwesome university */
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: var(--primary-color, #0066cc);
+  font-size: 3.5rem;
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .depute-assemblee h3 {
@@ -153,12 +231,13 @@
   .depute-header {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1.2rem;
   }
-  .depute-photo {
+  /*.depute-photo {
     width: 130px;
     height: 130px;
-  }
+  }*/
   .depute-intro h1 {
     font-size: 1.5rem;
   }
@@ -176,6 +255,10 @@
 }
 
 @media (max-width: 900px) {
+  .depute-container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
   .depute-main-layout {
     flex-direction: column;
     gap: 1.5rem;
@@ -187,5 +270,9 @@
   .depute-main-right {
     border-left: none;
     border-top: 4px solid var(--primary-color, #0066cc);
+  }
+  .depute-main-left::before,
+  .depute-main-right::before {
+    display: none;
   }
 }
