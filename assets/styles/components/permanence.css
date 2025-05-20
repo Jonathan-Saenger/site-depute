@@ -1,0 +1,87 @@
+.permanence-block {
+  background: var(--background-white, #fff);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,102,204,0.07);
+  padding: 2rem 2rem 1.5rem 2rem;
+  margin: 2.5rem 0 2rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.permanence-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.permanence-icon {
+  color: var(--primary-color, #0066cc);
+  font-size: 1.7rem;
+}
+
+.permanence-title {
+  color: var(--primary-dark, #004e9e);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.permanence-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-bottom: 1.2rem;
+  justify-content: flex-start;
+}
+
+.permanence-address {
+  font-size: 1.08rem;
+  color: var(--text-color, #333);
+  min-width: 180px;
+}
+
+.permanence-hours {
+  font-size: 1.08rem;
+  color: var(--text-color, #333);
+}
+
+.permanence-hours ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+}
+.permanence-hours li {
+  margin-bottom: 0.3rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.permanence-day {
+  color: var(--primary-color, #0066cc);
+  font-weight: 600;
+}
+.permanence-time {
+  color: var(--primary-dark, #004e9e);
+}
+
+.permanence-note {
+  margin-top: 1.2rem;
+  color: var(--text-light, #666);
+  font-size: 0.98rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .permanence-block {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .permanence-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

@@ -14,6 +14,7 @@ import './styles/components/header.css';
 import './styles/components/priorities.css';
 import './styles/components/work.css';
 import './styles/components/newsletter.css';
+import './styles/components/permanence.css';
 
 /**
  * Fonction d'initialisation principale (compatible Turbo)
