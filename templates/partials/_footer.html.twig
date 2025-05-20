@@ -28,11 +28,11 @@
                 <div class="footer-nav">
                     <h3>Navigation</h3>
                     <ul>
-                        <li><a href="#">Votre député</a></li>
-                        <li><a href="#">Dans le Haut-Rhin</a></li>
-                        <li><a href="#">A l'Assemblée Nationale</a></li>
-                        <li><a href="#">Rencontres</a></li>
-                        <li><a href="#">Presse</a></li>
+                        <li><a href="{{ path('app_depute') }}">Votre député</a></li>
+                        <li><a href="{{ path('app_news_category', {category: 'circonscription'}) }}">Dans le Haut-Rhin</a></li>
+                        <li><a href="{{ path('app_news_category', {category: 'assemblee'}) }}">A l'Assemblée Nationale</a></li>
+                        <li><a href="{{ path('app_rencontre')}}">Rencontres</a></li>
+                        <li><a href="{{ path('app_presse')}}">Presse</a></li>
                     </ul>
                 </div>
                 <div class="footer-nav">
