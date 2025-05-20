@@ -1,0 +1,96 @@
+/* Section Mentions Légales */
+.mentions-section {
+  background: var(--background-light, #f8fafd);
+  padding: 3rem 0 2rem 0;
+  min-height: 100vh;
+}
+
+.mentions-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.mentions-title {
+  font-size: 2.1rem;
+  color: var(--primary-color, #0066cc);
+  margin-bottom: 1.2rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.mentions-block {
+  background: var(--background-white, #fff);
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,102,204,0.07);
+  padding: 2.5rem 2rem 2rem 2rem;
+  color: var(--text-color, #333);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.mentions-block h2 {
+  color: var(--primary-color, #0066cc);
+  font-size: 1.18rem;
+  margin-top: 2.2rem;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.2px;
+}
+
+.mentions-block h3 {
+  color: var(--primary-dark, #004e9e);
+  font-size: 1.05rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.mentions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem 0;
+}
+.mentions-list li {
+  margin-bottom: 0.4rem;
+  padding-left: 1.2em;
+  position: relative;
+}
+.mentions-list li:before {
+  content: '\2022';
+  color: var(--primary-color, #0066cc);
+  position: absolute;
+  left: 0;
+  font-size: 1.1em;
+  top: 0.1em;
+}
+
+.mentions-link {
+  color: var(--primary-color, #0066cc);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.mentions-link:hover {
+  color: var(--accent-color, #F8C200);
+}
+
+.mentions-update {
+  margin-top: 2.2rem;
+  color: var(--text-light, #666);
+  font-size: 0.98rem;
+  text-align: right;
+}
+
+.mentions-note {
+  color: var(--text-light, #666);
+  font-size: 0.98rem;
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .mentions-block {
+    padding: 1.2rem 0.7rem 1rem 0.7rem;
+  }
+  .mentions-title {
+    font-size: 1.3rem;
+  }
+}
