@@ -1,54 +1,110 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}Détail de l'article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Aperçu de votre article</h1>
+            <div class="admin-header-actions">
+                <a href="{{ path('app_admin_article_index') }}" class="admin-back-button">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ article.slug }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
-            </tr>
-            <tr>
-                <th>ImageUrl</th>
-                <td>{{ article.imageUrl }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdateAt</th>
-                <td>{{ article.updateAt ? article.updateAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsPublished</th>
-                <td>{{ article.isPublished ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ article.category }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="admin-breadcrumb">
+            <a href="{{ path('app_home') }}">Accueil</a>
+            <span>/</span>
+            <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+            <span>/</span>
+            <a href="{{ path('app_admin_article_index') }}">Articles</a>
+            <span>/</span>
+            Détail
+        </div>
 
-    <a href="{{ path('app_admin_article_index') }}">back to list</a>
+        <div class="admin-table-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ article.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Contenu</th>
+                        <td>{{ article.content }}</td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td>
+                            {% if article.imageUrl %}
+                                <img src="{{ asset(article.imageUrl) }}" alt="Aperçu de l'image" class="image-admin" style="width:120px; height:120px;" />
+                            {% else %}
+                                <span class="empty-message">Aucune image</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date de création</th>
+                        <td>{{ article.createdAt ? article.createdAt|date('d F Y à H:i') : '' }}</td>
+                    </tr>
 
-    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">edit</a>
+                    {% if article.UpdateAt is defined %}
+                    <tr>
+                        <th>Date de modification</th>
+                        <td>{{ article.updateAt ? article.updateAt|date('d F Y à H:i') : 'Aucune modification' }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <th>État de publication</th>
+                        <td>
+                            <div class="publish-icon {% if article.isPublished %}published{% else %}unpublished{% endif %}">
+                                {% if article.isPublished %}
+                                    <i class="fas fa-check"></i>
+                                {% else %}
+                                    <i class="fas fa-times"></i>
+                                {% endif %}
+                            </div>
+                            {{ article.isPublished ? 'Publié' : 'Non publié' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Catégorie</th>
+                        <td>
+                            {% if article.category.value == 'Circonscription' %}
+                                <span class="category-badge circo">Circo</span>
+                            {% elseif article.category.value == 'Assemblée' %}
+                                <span class="category-badge an">AN</span>
+                            {% else %}
+                                <span class="category-badge">{{ article.category.value }}</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    {{ include('admin_article/_delete_form.html.twig') }}
+        <div class="admin-actions-container">
+            <div class="admin-actions">
+                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="admin-card-button primary">
+                    <i class="fas fa-pen"></i> Modifier
+                </a>
+
+                <form method="post" action="{{ path('app_admin_article_toggle_publish', {'id': article.id}) }}" style="display:inline">
+                    <input type="hidden" name="_token" value="{{ csrf_token('toggle-publish' ~ article.id) }}">
+                    <button type="submit" class="admin-card-button {% if article.isPublished %}secondary{% else %}primary{% endif %}">
+                        <i class="fas {% if article.isPublished %}fa-eye-slash{% else %}fa-eye{% endif %}"></i>
+                        {{ article.isPublished ? 'Dépublier' : 'Publier' }}
+                    </button>
+                </form>
+
+                <form method="post" action="{{ path('app_admin_article_delete', {'id': article.id}) }}" style="display:inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                    <button type="submit" class="admin-card-button danger">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

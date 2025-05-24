@@ -1,13 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}Modification d'article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Modifier un article</h1>
+        <a href="{{ path('app_admin_article_index') }}" class="admin-back-button">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
+    </div>
 
-    {{ include('admin_article/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="admin-breadcrumb">
+        <a href="{{ path('app_home') }}">Accueil</a>
+        <span>/</span>
+        <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+        <span>/</span>
+        <a href="{{ path('app_admin_article_index') }}">Articles</a>
+        <span>/</span>
+        Modification
+    </div>
 
-    <a href="{{ path('app_admin_article_index') }}">back to list</a>
+    <div class="admin-card">
+        <div class="admin-card-content">
+            {{ include('admin_article/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+        </div>
+    </div>
 
-    {{ include('admin_article/_delete_form.html.twig') }}
+    <div class="admin-actions-container">
+        <div class="admin-delete-container">
+            {{ include('admin_article/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}

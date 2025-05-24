@@ -1,4 +1,65 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+    <div class="admin-form-grid">
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.title, 'Titre', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.title, {'attr': {'class': 'admin-form-input'}}) }}
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.category, 'Catégorie', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.category, {'attr': {'class': 'admin-form-select'}}) }}
+                {{ form_errors(form.category) }}
+                <div class="admin-form-help">Sélectionnez la section où l'article sera publié</div>
+            </div>
+        </div>
+
+        <div class="admin-form-group full-width">
+            <div class="admin-form-field">
+                {{ form_label(form.content, 'Contenu', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.content, {'attr': {'class': 'admin-form-textarea', 'rows': 15}}) }}
+                {{ form_errors(form.content) }}
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.imageUrl, 'URL de l\'image', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.imageUrl, {'attr': {'class': 'admin-form-input', 'placeholder': 'https://example.com/image.jpg'}}) }}
+                {{ form_errors(form.imageUrl) }}
+                {% if form.vars.value.imageUrl is defined and form.vars.value.imageUrl %}
+                    <div class="admin-form-image-preview">
+                        <img src="{{ form.vars.value.imageUrl }}" alt="Aperçu" style="max-width: 100%; margin-top: 10px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </div>
+                    <div class="admin-form-help">Image actuellement utilisée</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.isPublished, 'Publier l\'article', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.isPublished, {'attr': {'class': 'admin-form-checkbox'}}) }}
+                {{ form_errors(form.isPublished) }}
+                <div class="admin-form-help">Cochez pour rendre l'article visible sur le site</div>
+            </div>
+        </div>
+
+        {% for child in form.children %}
+            {% if child.vars.name != 'title' and child.vars.name != 'content' and child.vars.name != 'category' and child.vars.name != 'imageUrl' and child.vars.name != 'isPublished' %}
+                <div class="admin-form-group">
+                    <div class="admin-form-field">
+                        {{ form_row(child) }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="admin-form-actions">
+        <button class="admin-card-button primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
 {{ form_end(form) }}
