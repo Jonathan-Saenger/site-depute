@@ -17,21 +17,12 @@ class ArticleCategoryForm extends AbstractType
             ->add('title', null, [
                 'label' => 'Titre',
             ])
-            ->add('slug', null, [
-                'label' => 'Slug',
-            ])
+
             ->add('content', null, [
                 'label' => 'Contenu',
             ])
             ->add('imageUrl', null, [
                 'label' => 'Image',
-            ])
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-                'label' => 'Créé',
-            ])
-            ->add('updateAt', null, [
-                'label' => 'Modifié',
             ])
             ->add('isPublished', null, [
                 'label' => false,

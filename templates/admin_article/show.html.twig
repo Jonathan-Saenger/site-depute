@@ -11,20 +11,20 @@
                     <i class="fas fa-arrow-left"></i> Retour à la liste
                 </a>
             </div>
-        </div>
-
-        <div class="admin-breadcrumb">
-            <a href="{{ path('app_home') }}">Accueil</a>
-            <span>/</span>
-            <a href="{{ path('app_admin_dashboard') }}">Administration</a>
-            <span>/</span>
-            <a href="{{ path('app_admin_article_index') }}">Articles</a>
-            <span>/</span>
-            Détail
+        </div>        <div class="admin-navigation-bar">
+            <div class="admin-breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+                <span>/</span>
+                <a href="{{ path('app_admin_article_index') }}">Articles</a>
+                <span>/</span>
+                Détail
+            </div>
         </div>
 
         <div class="admin-table-container">
-            <table>
+            <table class="admin-detail-table">
                 <tbody>
                     <tr>
                         <th>Titre</th>
@@ -85,25 +85,14 @@
         </div>
 
         <div class="admin-actions-container">
-            <div class="admin-actions">
-                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="admin-card-button primary">
-                    <i class="fas fa-pen"></i> Modifier
+            <div class="admin-quick-actions">
+                <a href="{{ path('app_admin_article_index') }}" class="admin-quick-button primary">
+                    <i class="fas fa-list"></i><span>Retour à la liste</span>
                 </a>
 
-                <form method="post" action="{{ path('app_admin_article_toggle_publish', {'id': article.id}) }}" style="display:inline">
-                    <input type="hidden" name="_token" value="{{ csrf_token('toggle-publish' ~ article.id) }}">
-                    <button type="submit" class="admin-card-button {% if article.isPublished %}secondary{% else %}primary{% endif %}">
-                        <i class="fas {% if article.isPublished %}fa-eye-slash{% else %}fa-eye{% endif %}"></i>
-                        {{ article.isPublished ? 'Dépublier' : 'Publier' }}
-                    </button>
-                </form>
-
-                <form method="post" action="{{ path('app_admin_article_delete', {'id': article.id}) }}" style="display:inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-                    <button type="submit" class="admin-card-button danger">
-                        <i class="fas fa-trash"></i> Supprimer
-                    </button>
-                </form>
+                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="admin-quick-button edit">
+                    <i class="fas fa-pen"></i><span>Modifier</span>
+                </a>
             </div>
         </div>
     </div>
