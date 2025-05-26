@@ -923,3 +923,123 @@ tr:last-child td {
         line-height: 1.2;
     }
 }
+
+/* Styles pour le formulaire d'édition/création d'article */
+.admin-form {
+    background: var(--admin-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--admin-shadow);
+    padding: 2rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+}
+
+.admin-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.admin-form-label {
+    font-weight: 600;
+    color: var(--admin-primary);
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+}
+
+.admin-form-input,
+.admin-form-select {
+    width: 100%;
+    padding: 0.7em 1em;
+    border: 1px solid var(--admin-gray-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: var(--admin-background);
+    color: var(--admin-text);
+    transition: border-color 0.2s;
+}
+
+.admin-form-input:focus,
+.admin-form-select:focus {
+    border-color: var(--admin-primary);
+    outline: none;
+}
+
+.admin-form-textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 1em;
+    border: 1px solid var(--admin-gray-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    background: var(--admin-background);
+    color: var(--admin-text);
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.admin-form-textarea:focus {
+    border-color: var(--admin-primary);
+    outline: none;
+}
+
+.admin-form-checkbox {
+    accent-color: var(--admin-primary);
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5em;
+}
+
+.admin-form-help {
+    font-size: 0.92rem;
+    color: var(--admin-text-light);
+    margin-top: 0.2rem;
+}
+
+.admin-form-image-preview {
+    margin-top: 0.5rem;
+    text-align: left;
+}
+
+.admin-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Responsive pour le formulaire d'article */
+@media (max-width: 900px) {
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+    .admin-form-group.full-width {
+        grid-column: 1 / 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin-form {
+        padding: 1rem 0.5rem;
+    }
+    .admin-form-grid {
+        gap: 1rem;
+    }
+    .admin-form-actions {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+}
