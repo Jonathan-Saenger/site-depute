@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace d'administration{% endblock %}
+
+{% block body %}
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Espace d'administration</h1>
+            <div class="admin-header-actions">
+                <a href="{{ path('app_home') }}" class="admin-back-button">
+                    <i class="fas fa-arrow-left"></i> Retour au site
+                </a>
+            </div>
+        </div>
+
+        <div class="admin-dashboard">
+            <div class="admin-welcome">
+                <div class="admin-welcome-content">
+                    <h2>Bienvenue dans votre espace de gestion</h2>
+                    <p>Gérez facilement vos contenus et interactions avec vos concitoyens.</p>
+                    <p class="admin-date">{{ "now"|date('d F Y') }}</p>
+                </div>
+                <div class="admin-welcome-image">
+                    <i class="fas fa-landmark admin-icon"></i>
+                </div>
+            </div>
+
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <i class="fas fa-newspaper admin-card-icon"></i>
+                        <h3>Articles</h3>
+                    </div>
+                    <div class="admin-card-content">
+                        <p>Gérez les actualités publiées sur votre site. Créez, modifiez et publiez des articles pour informer vos concitoyens.</p>
+                        <ul class="admin-card-stats">
+                            <li><i class="fas fa-check-circle"></i> <span>{{ articlesPublished|default(0) }}</span> publiés</li>
+                            <li><i class="fas fa-clock"></i> <span>{{ articlesDrafts|default(0) }}</span> brouillons</li>
+                        </ul>
+                    </div>
+                    <div class="admin-card-actions">                        <a href="{{ path('app_admin_article_index') }}" class="admin-card-button primary">
+                            <i class="fas fa-list"></i> Tous les articles
+                        </a>
+                        <a href="{{ path('app_admin_article_new') }}" class="admin-card-button secondary">
+                            <i class="fas fa-plus"></i> Nouvel article
+                        </a>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <i class="fas fa-calendar-alt admin-card-icon"></i>
+                        <h3>Rendez-vous</h3>
+                    </div>
+                    <div class="admin-card-content">
+                        <p>Organisez et gérez vos événements et rendez-vous publics. Tenez vos concitoyens informés de vos prochaines permanences et rencontres.</p>
+                        <ul class="admin-card-stats">
+                            <li><i class="fas fa-calendar-check"></i> <span>{{ upcomingEvents|default(0) }}</span> à venir</li>
+                            <li><i class="fas fa-calendar-times"></i> <span>{{ pastEvents|default(0) }}</span> passés</li>
+                        </ul>
+                    </div>                    <div class="admin-card-actions">
+                        <a href="#" class="admin-card-button primary disabled">
+                            <i class="fas fa-list"></i> Tous les rendez-vous
+                        </a>
+                        <a href="#" class="admin-card-button secondary disabled">
+                            <i class="fas fa-plus"></i> Nouveau rendez-vous
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-quick-actions">
+                <h3><i class="fas fa-bolt"></i> Actions rapides</h3>
+                <div class="admin-action-buttons">
+                    <a href="{{ path('app_admin_article_index') }}" class="admin-action-button">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Articles</span>
+                    </a>
+                    <a href="#" class="admin-action-button">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Rendez-vous</span>
+                    </a>
+                    <a href="#" class="admin-action-button">
+                        <i class="fas fa-users"></i>
+                        <span>Contacts</span>
+                    </a>
+                    <a href="#" class="admin-action-button">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Statistiques</span>
+                    </a>
+                    <a href="#" class="admin-action-button">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

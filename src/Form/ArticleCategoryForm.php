@@ -14,15 +14,19 @@ class ArticleCategoryForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('slug')
-            ->add('content')
-            ->add('imageUrl')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
+            ->add('title', null, [
+                'label' => 'Titre',
             ])
-            ->add('updateAt')
-            ->add('isPublished')
+
+            ->add('content', null, [
+                'label' => 'Contenu',
+            ])
+            ->add('imageUrl', null, [
+                'label' => 'Image',
+            ])
+            ->add('isPublished', null, [
+                'label' => false,
+            ])
             ->add('category', ChoiceType::class, [
                 'choices' => [
                     'Assemblée' => CategoryEnum::ASSEMBLEE,

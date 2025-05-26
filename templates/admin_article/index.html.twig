@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des articles{% endblock %}
+
+{% block body %}
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Gestion des articles</h1>
+            <a href="{{ path('app_admin_article_new') }}" class="admin-create-button">
+                <i class="fas fa-plus"></i> Créer un nouvel article
+            </a>
+        </div>
+
+        <div class="admin-breadcrumb">
+            <a href="{{ path('app_home') }}">Accueil</a>
+            <span>/</span>
+            <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+            <span>/</span>
+            Articles
+        </div>
+
+        <div class="admin-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Aperçu</th>
+                        <th>Image</th>
+                        <th>Créé</th>
+                        <th>Publier</th>
+                        <th>Catégorie</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>{{ article.title }}</td>
+                        <td>
+                            {% set words = article.content|split(' ') %}
+                            {% if words|length > 15 %}
+                                {{ words|slice(0, 15)|join(' ') ~ ' …' }}
+                            {% else %}
+                                {{ article.content }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if article.imageUrl %}
+                                <img class="image-admin" src="{{ asset(article.imageUrl) }}" alt="Image" />
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>{{ article.createdAt ? article.createdAt|date('d F Y') : '' }}</td>
+                        <td>
+                            <form method="post" action="{{ path('app_admin_article_toggle_publish', {'id': article.id}) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token('toggle-publish' ~ article.id) }}">
+                                <button type="submit" class="publish-button" title="{{ article.isPublished ? 'Dépublier' : 'Publier' }}">
+                                    <div class="publish-icon {% if article.isPublished %}published{% else %}unpublished{% endif %}">
+                                        {% if article.isPublished %}
+                                            <i class="fas fa-check"></i>
+                                        {% else %}
+                                            <i class="fas fa-times"></i>
+                                        {% endif %}
+                                    </div>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            {% if article.category.value == 'Circonscription' %}
+                                <span class="category-badge circo">Circo</span>
+                            {% elseif article.category.value == 'Assemblée' %}
+                                <span class="category-badge an">AN</span>
+                            {% else %}
+                                <span class="category-badge">{{ article.category.value }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{{ path('app_admin_article_show', {'id': article.id}) }}" class="action-button view-button" title="Voir">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="action-button edit-button" title="Modifier">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <form method="post" action="{{ path('app_admin_article_delete', {'id': article.id}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                    <button type="submit" class="action-button delete-button" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="empty-message">Aucun article n'a été trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

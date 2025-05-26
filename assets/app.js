@@ -7,6 +7,7 @@ import './styles/rencontre.css';
 import './styles/depute.css';
 import './styles/presse.css';
 import './styles/mentions.css';
+import './styles/admin.css';
 import './styles/components/footer.css';
 import './styles/components/hero.css';
 import './styles/components/news.css';
