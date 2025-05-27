@@ -1,5 +1,5 @@
-<form method="post" action="{{ path('app_admin_article_delete', {'id': article.id}) }}" class="admin-delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+<form method="post" action="{{ path('app_admin_article_delete', {'slug': article.slug}) }}" class="admin-delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.slug) }}">
     <div class="admin-delete-warning">
         <i class="fas fa-exclamation-triangle"></i>
         <p>Attention : La suppression d'un article est définitive.</p>

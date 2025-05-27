@@ -32,15 +32,14 @@ final class NewsController extends AbstractController
         return $this->render($template, [
             'articles' => $this->articleRepository->findPublishedArticlesByCategory(strtoupper($category)),
         ]);
-    }
-
-    #[Route('/actualite/article/{id}', name: 'app_news_show', requirements: ['id' => '\d+'])]
-    public function show(int $id): Response
+    }    #[Route('/actualite/article/{slug}', name: 'app_news_show', requirements: ['slug' => '[a-z0-9\-]+'])]
+    public function show(string $slug): Response
     {
-        $article = $this->articleRepository->find($id);
+        $article = $this->articleRepository->findPublishedBySlug($slug);
         if (!$article) {
             throw $this->createNotFoundException('Article non trouvé');
         }
+
         return $this->render('pages/actualites/article.html.twig', [
             'article' => $article,
         ]);

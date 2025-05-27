@@ -24,9 +24,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
-    }
-
-    public function findPublishedArticlesByCategory(string $category): array
+    }    public function findPublishedArticlesByCategory(string $category): array
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.isPublished = :published')
@@ -36,5 +34,27 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * Trouve un article publié par son slug
+     */
+    public function findPublishedBySlug(string $slug): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.isPublished = :published')
+            ->andWhere('a.slug = :slug')
+            ->setParameter('published', true)
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * Trouve un article par son slug (publié ou non)
+     */
+    public function findBySlug(string $slug): ?Article
+    {
+        return $this->findOneBy(['slug' => $slug]);
     }
 }

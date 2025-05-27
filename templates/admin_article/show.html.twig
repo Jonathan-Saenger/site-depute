@@ -88,9 +88,7 @@
             <div class="admin-quick-actions">
                 <a href="{{ path('app_admin_article_index') }}" class="admin-quick-button primary">
                     <i class="fas fa-list"></i><span>Retour à la liste</span>
-                </a>
-
-                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="admin-quick-button edit">
+                </a>                <a href="{{ path('app_admin_article_edit', {'slug': article.slug}) }}" class="admin-quick-button edit">
                     <i class="fas fa-pen"></i><span>Modifier</span>
                 </a>
             </div>

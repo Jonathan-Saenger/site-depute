@@ -8,6 +8,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Article
 {
     #[ORM\Id]
@@ -18,7 +19,7 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -34,17 +35,19 @@ class Article
     private ?\DateTime $updateAt = null;
 
     #[ORM\Column]
-    private ?bool $isPublished = null;
-
-    #[ORM\Column(enumType: CategoryEnum::class)]
+    private ?bool $isPublished = null;    #[ORM\Column(enumType: CategoryEnum::class)]
     private ?CategoryEnum $category = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->isPublished = false; // Par défaut, les articles sont en brouillon
+    }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
+    }    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -52,6 +55,9 @@ class Article
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        // Réinitialiser le slug si le titre change
+        $this->slug = null;
 
         return $this;
     }
@@ -131,12 +137,19 @@ class Article
     public function getCategory(): ?CategoryEnum
     {
         return $this->category;
-    }
-
-    public function setCategory(CategoryEnum $category): static
+    }    public function setCategory(CategoryEnum $category): static
     {
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * Callback appelé automatiquement avant une mise à jour de l'entité
+     */
+    #[ORM\PreUpdate]
+    public function updateTimestamp(): void
+    {
+        $this->updateAt = new \DateTime();
     }
 }

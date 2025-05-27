@@ -12,7 +12,7 @@
                                 <span class="news-date">{{ article.createdAt|date('d F Y') }}</span>
                                 <h3>{{ article.title }}</h3>
                                 <p>{{ article.content|striptags|slice(0, 150) }}...</p>
-                                <a href="{{ path('app_news_show', {'id': article.id}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                                <a href="{{ path('app_news_show', {'slug': article.slug}) }}" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
                             </div>
                         </article>
                     {% else %}

@@ -15,14 +15,13 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
-
-        // Fixtures pour les articles
+        $faker = Factory::create('fr_FR');        // Fixtures pour les articles
         for ($i = 0; $i < 10; $i++) {
             $article = new Article();
             $article->setTitle($faker->sentence(3));
             $article->setSlug($faker->slug());
             $article->setContent($faker->paragraph(5));
+            // Override la date de création automatique pour avoir des données de test variées
             $article->setCreatedAt(new \DateTimeImmutable($faker->dateTimeBetween('-1 year')->format('Y-m-d')));
             $article->setIsPublished(true);
             $article->setCategory($faker->randomElement([CategoryEnum::ASSEMBLEE, CategoryEnum::CIRCONSCRIPTION]));

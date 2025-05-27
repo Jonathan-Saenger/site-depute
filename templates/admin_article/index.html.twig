@@ -51,10 +51,8 @@
                                 -
                             {% endif %}
                         </td>
-                        <td>{{ article.createdAt ? article.createdAt|date('d F Y') : '' }}</td>
-                        <td>
-                            <form method="post" action="{{ path('app_admin_article_toggle_publish', {'id': article.id}) }}">
-                                <input type="hidden" name="_token" value="{{ csrf_token('toggle-publish' ~ article.id) }}">
+                        <td>{{ article.createdAt ? article.createdAt|date('d F Y') : '' }}</td>                        <td>                            <form method="post" action="{{ path('app_admin_article_toggle_publish', {'slug': article.slug}) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token('toggle-publish' ~ article.slug) }}">
                                 <button type="submit" class="publish-button" title="{{ article.isPublished ? 'Dépublier' : 'Publier' }}">
                                     <div class="publish-icon {% if article.isPublished %}published{% else %}unpublished{% endif %}">
                                         {% if article.isPublished %}
@@ -74,17 +72,15 @@
                             {% else %}
                                 <span class="category-badge">{{ article.category.value }}</span>
                             {% endif %}
-                        </td>
-                        <td>
+                        </td>                        <td>
                             <div class="action-buttons">
-                                <a href="{{ path('app_admin_article_show', {'id': article.id}) }}" class="action-button view-button" title="Voir">
+                                <a href="{{ path('app_admin_article_show', {'slug': article.slug}) }}" class="action-button view-button" title="Voir">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}" class="action-button edit-button" title="Modifier">
+                                <a href="{{ path('app_admin_article_edit', {'slug': article.slug}) }}" class="action-button edit-button" title="Modifier">
                                     <i class="fas fa-pen"></i>
-                                </a>
-                                <form method="post" action="{{ path('app_admin_article_delete', {'id': article.id}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                </a>                                <form method="post" action="{{ path('app_admin_article_delete', {'slug': article.slug}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cet article ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.slug) }}">
                                     <button type="submit" class="action-button delete-button" title="Supprimer">
                                         <i class="fas fa-trash"></i>
                                     </button>
