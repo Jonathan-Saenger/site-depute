@@ -23,13 +23,11 @@ final class AdminArticleController extends AbstractController
             'upcomingEvents' => 0, // À implémenter avec le futur CRUD des rendez-vous
             'pastEvents' => 0,     // À implémenter avec le futur CRUD des rendez-vous
         ]);
-    }
-
-    #[Route('/article', name: 'app_admin_article_index', methods: ['GET'])]
+    }    #[Route('/article', name: 'app_admin_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('admin_article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articleRepository->findAllOrderedByCreatedAt(),
         ]);
     }
 

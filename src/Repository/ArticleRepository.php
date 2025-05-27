@@ -48,13 +48,23 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter('slug', $slug)
             ->getQuery()
             ->getOneOrNullResult();
-    }
-
-    /**
+    }    /**
      * Trouve un article par son slug (publié ou non)
      */
     public function findBySlug(string $slug): ?Article
     {
         return $this->findOneBy(['slug' => $slug]);
+    }
+
+    /**
+     * Récupère tous les articles triés par date de création décroissante
+     * Utilisé pour l'interface d'administration
+     */
+    public function findAllOrderedByCreatedAt(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
     }
 }
