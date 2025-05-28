@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de la rencontre{% endblock %}
+
+{% block body %}
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Aperçu de votre rencontre</h1>
+            <div class="admin-header-actions">
+                <a href="{{ path('app_admin_rencontre_index') }}" class="admin-back-button">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+        </div>
+
+        <div class="admin-navigation-bar">
+            <div class="admin-breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+                <span>/</span>
+                <a href="{{ path('app_admin_rencontre_index') }}">Rencontres</a>
+                <span>/</span>
+                Détail
+            </div>
+        </div>
+
+        <div class="admin-table-container">
+            <table class="admin-detail-table">
+                <tbody>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ rencontre.titre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>
+                            {% if rencontre.description %}
+                                {{ rencontre.description|nl2br }}
+                            {% else %}
+                                <span class="empty-message">Aucune description</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date et heure</th>
+                        <td>{{ rencontre.date ? rencontre.date|date('d F Y à H:i') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lieu</th>
+                        <td>{{ rencontre.lieu }}</td>
+                    </tr>
+                    <tr>
+                        <th>Commune</th>
+                        <td>
+                            <span class="location-badge">{{ rencontre.commune.getLabel() }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td>
+                            <span class="type-badge">{{ rencontre.type.getLabel() }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Visibilité</th>
+                        <td>
+                            {% if rencontre.visible %}
+                                <span class="status-badge published">
+                                    <i class="fas fa-eye"></i> Visible sur le site
+                                </span>
+                            {% else %}
+                                <span class="status-badge draft">
+                                    <i class="fas fa-eye-slash"></i> Masqué du site
+                                </span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Date de création</th>
+                        <td>{{ rencontre.createdAt ? rencontre.createdAt|date('d F Y à H:i') : '' }}</td>
+                    </tr>
+                    {% if rencontre.updatedAt is defined and rencontre.updatedAt %}
+                    <tr>
+                        <th>Date de modification</th>
+                        <td>{{ rencontre.updatedAt|date('d F Y à H:i') }}</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-actions-container">
+            <div class="admin-quick-actions">
+                <a href="{{ path('app_admin_rencontre_index') }}" class="admin-quick-button primary">
+                    <i class="fas fa-list"></i><span>Retour à la liste</span>
+                </a>
+                <a href="{{ path('app_admin_rencontre_edit', {'id': rencontre.id}) }}" class="admin-quick-button edit">
+                    <i class="fas fa-pen"></i><span>Modifier</span>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{{ form_start(form, {'attr': {'class': 'admin-form'}}) }}
+    <div class="admin-form-grid">
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.titre, 'Titre de la rencontre', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.titre, {'attr': {'class': 'admin-form-input'}}) }}
+                {{ form_errors(form.titre) }}
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.date, 'Date et heure', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.date, {'attr': {'class': 'admin-form-input'}}) }}
+                {{ form_errors(form.date) }}
+                <div class="admin-form-help">Sélectionnez la date et l'heure de la rencontre</div>
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.lieu, 'Lieu précis', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.lieu, {'attr': {'class': 'admin-form-input'}}) }}
+                {{ form_errors(form.lieu) }}
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.commune, 'Commune', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.commune, {'attr': {'class': 'admin-form-select'}}) }}
+                {{ form_errors(form.commune) }}
+                <div class="admin-form-help">Choisissez la commune où aura lieu la rencontre</div>
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                {{ form_label(form.type, 'Type de rencontre', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.type, {'attr': {'class': 'admin-form-select'}}) }}
+                {{ form_errors(form.type) }}
+                <div class="admin-form-help">Sélectionnez le type d'événement</div>
+            </div>
+        </div>
+
+        <div class="admin-form-group full-width">
+            <div class="admin-form-field">
+                {{ form_label(form.description, 'Description', {'label_attr': {'class': 'admin-form-label'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'admin-form-textarea'}}) }}
+                {{ form_errors(form.description) }}
+                <div class="admin-form-help">Décrivez brièvement l'objet de cette rencontre (optionnel)</div>
+            </div>
+        </div>
+
+        <div class="admin-form-group">
+            <div class="admin-form-field">
+                <div class="admin-form-checkbox-wrapper">
+                    {{ form_widget(form.visible, {'attr': {'class': 'admin-form-checkbox'}}) }}
+                    {{ form_label(form.visible, 'Visible sur le site public', {'label_attr': {'class': 'admin-form-checkbox-label'}}) }}
+                </div>
+                {{ form_errors(form.visible) }}
+                <div class="admin-form-help">Décochez pour masquer cette rencontre du site public</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-form-actions">
+        <button class="admin-card-button primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+{{ form_end(form) }}

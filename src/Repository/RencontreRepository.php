@@ -60,4 +60,15 @@ class RencontreRepository extends ServiceEntityRepository
                   ->getQuery()
                   ->getResult();
      }
+
+    /**
+     * Récupère toutes les rencontres triées par date
+     */
+    public function findAllOrderedByDate(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.date', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

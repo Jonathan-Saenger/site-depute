@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une rencontre{% endblock %}
+
+{% block body %}
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Modifier une rencontre</h1>
+        <a href="{{ path('app_admin_rencontre_index') }}" class="admin-back-button">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
+    </div>
+
+    <div class="admin-breadcrumb">
+        <a href="{{ path('app_home') }}">Accueil</a>
+        <span>/</span>
+        <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+        <span>/</span>
+        <a href="{{ path('app_admin_rencontre_index') }}">Rencontres</a>
+        <span>/</span>
+        Modification
+    </div>
+
+    <div class="admin-card">
+        <div class="admin-card-content">
+            {{ include('admin_rencontre/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

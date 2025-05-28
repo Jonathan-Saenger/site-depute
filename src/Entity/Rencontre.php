@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RencontreRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Rencontre
 {
     #[ORM\Id]
@@ -41,11 +42,10 @@ class Rencontre
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
-
-    public function __construct()
+    private ?\DateTimeImmutable $updatedAt = null;    public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->visible = true; // Par défaut, les rencontres sont visibles
     }
 
     public function getId(): ?int
@@ -159,11 +159,18 @@ class Rencontre
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-
-    #[ORM\PreUpdate]
+    }    #[ORM\PreUpdate]
     public function updateTimestamp(): void
     {
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PrePersist]
+    public function setTimestamps(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
         $this->updatedAt = new \DateTimeImmutable();
     }
 }

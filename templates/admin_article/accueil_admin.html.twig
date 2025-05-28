@@ -59,10 +59,10 @@
                             <li><i class="fas fa-calendar-times"></i> <span>{{ pastEvents|default(0) }}</span> passés</li>
                         </ul>
                     </div>                    <div class="admin-card-actions">
-                        <a href="#" class="admin-card-button primary disabled">
+                        <a href="{{ path('app_admin_rencontre_index') }}" class="admin-card-button primary">
                             <i class="fas fa-list"></i> Tous les rendez-vous
                         </a>
-                        <a href="#" class="admin-card-button secondary disabled">
+                        <a href="{{ path('app_admin_rencontre_new') }}" class="admin-card-button secondary">
                             <i class="fas fa-plus"></i> Nouveau rendez-vous
                         </a>
                     </div>
@@ -75,8 +75,7 @@
                     <a href="{{ path('app_admin_article_index') }}" class="admin-action-button">
                         <i class="fas fa-newspaper"></i>
                         <span>Articles</span>
-                    </a>
-                    <a href="#" class="admin-action-button">
+                    </a>                    <a href="{{ path('app_admin_rencontre_index') }}" class="admin-action-button">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Rendez-vous</span>
                     </a>

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleCategoryForm;
 use App\Repository\ArticleRepository;
+use App\Repository\RencontreRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,17 +14,16 @@ use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/dashboard')]
 final class AdminArticleController extends AbstractController
-{
-    #[Route('', name: 'app_admin_dashboard', methods: ['GET'])]
-    public function dashboard(ArticleRepository $articleRepository): Response
+{    #[Route('', name: 'app_admin_dashboard', methods: ['GET'])]
+    public function dashboard(ArticleRepository $articleRepository, RencontreRepository $rencontreRepository): Response
     {
         return $this->render('admin_article/accueil_admin.html.twig', [
             'articlesPublished' => count($articleRepository->findBy(['isPublished' => true])),
             'articlesDrafts' => count($articleRepository->findBy(['isPublished' => false])),
-            'upcomingEvents' => 0, // À implémenter avec le futur CRUD des rendez-vous
-            'pastEvents' => 0,     // À implémenter avec le futur CRUD des rendez-vous
+            'upcomingEvents' => count($rencontreRepository->findUpcomingRencontre()),
+            'pastEvents' => count($rencontreRepository->findBy(['visible' => true])) - count($rencontreRepository->findUpcomingRencontre()),
         ]);
-    }    #[Route('/article', name: 'app_admin_article_index', methods: ['GET'])]
+    }#[Route('/article', name: 'app_admin_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('admin_article/index.html.twig', [

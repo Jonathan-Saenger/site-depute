@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des rencontres{% endblock %}
+
+{% block body %}
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Gestion des rencontres</h1>
+            <a href="{{ path('app_admin_rencontre_new') }}" class="admin-create-button">
+                <i class="fas fa-plus"></i> Créer une nouvelle rencontre
+            </a>
+        </div>
+
+        <div class="admin-breadcrumb">
+            <a href="{{ path('app_home') }}">Accueil</a>
+            <span>/</span>
+            <a href="{{ path('app_admin_dashboard') }}">Administration</a>
+            <span>/</span>
+            Rencontres
+        </div>
+
+        <div class="admin-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Lieu</th>
+                        <th>Commune</th>
+                        <th>Type</th>
+                        <th>Visible</th>
+                        <th>Créé</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for rencontre in rencontres %}
+                    <tr>
+                        <td>{{ rencontre.titre }}</td>
+                        <td>{{ rencontre.date ? rencontre.date|date('d/m/Y H:i') : '' }}</td>
+                        <td>{{ rencontre.lieu }}</td>
+                        <td>
+                            <span class="location-badge">{{ rencontre.commune.getLabel() }}</span>
+                        </td>
+                        <td>
+                            <span class="type-badge">{{ rencontre.type.getLabel() }}</span>
+                        </td>
+                        <td>
+                            <form method="post" action="{{ path('app_admin_rencontre_toggle_visible', {'id': rencontre.id}) }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token('toggle-visible' ~ rencontre.id) }}">
+                                <button type="submit" class="visibility-toggle {{ rencontre.visible ? 'visible' : 'hidden' }}" title="{{ rencontre.visible ? 'Masquer' : 'Afficher' }}">
+                                    <i class="fas {{ rencontre.visible ? 'fa-eye' : 'fa-eye-slash' }}"></i>
+                                    {{ rencontre.visible ? 'Visible' : 'Masqué' }}
+                                </button>
+                            </form>
+                        </td>
+                        <td>{{ rencontre.createdAt ? rencontre.createdAt|date('d F Y') : '' }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{{ path('app_admin_rencontre_show', {'id': rencontre.id}) }}" class="action-button view-button" title="Voir">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('app_admin_rencontre_edit', {'id': rencontre.id}) }}" class="action-button edit-button" title="Modifier">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <form method="post" action="{{ path('app_admin_rencontre_delete', {'id': rencontre.id}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette rencontre ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rencontre.id) }}">
+                                    <button type="submit" class="action-button delete-button" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="empty-state">
+                            <div class="empty-message">
+                                <i class="fas fa-calendar-times"></i>
+                                <p>Aucune rencontre créée pour le moment.</p>
+                                <a href="{{ path('app_admin_rencontre_new') }}" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Créer la première rencontre
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
