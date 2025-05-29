@@ -6,6 +6,7 @@ use App\Entity\Rencontre;
 use App\Form\RencontreForm;
 use App\Repository\RencontreRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,16 +43,16 @@ final class AdminRencontreController extends AbstractController
         ]);
     }
 
-    #[Route('/rencontre/{id}', name: 'app_admin_rencontre_show', methods: ['GET'])]
-    public function show(Rencontre $rencontre): Response
+    #[Route('/rencontre/{slug}', name: 'app_admin_rencontre_show', methods: ['GET'])]
+    public function show(#[MapEntity(mapping: ['slug' => 'slug'])] Rencontre $rencontre): Response
     {
         return $this->render('admin_rencontre/show.html.twig', [
             'rencontre' => $rencontre,
         ]);
     }
 
-    #[Route('/rencontre/{id}/edit', name: 'app_admin_rencontre_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Rencontre $rencontre, EntityManagerInterface $entityManager): Response
+    #[Route('/rencontre/{slug}/edit', name: 'app_admin_rencontre_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, #[MapEntity(mapping: ['slug' => 'slug'])] Rencontre $rencontre, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(RencontreForm::class, $rencontre);
         $form->handleRequest($request);
@@ -68,8 +69,8 @@ final class AdminRencontreController extends AbstractController
         ]);
     }
 
-    #[Route('/rencontre/{id}', name: 'app_admin_rencontre_delete', methods: ['POST'])]
-    public function delete(Request $request, Rencontre $rencontre, EntityManagerInterface $entityManager): Response
+    #[Route('/rencontre/{slug}', name: 'app_admin_rencontre_delete', methods: ['POST'])]
+    public function delete(Request $request, #[MapEntity(mapping: ['slug' => 'slug'])] Rencontre $rencontre, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$rencontre->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($rencontre);
@@ -79,14 +80,9 @@ final class AdminRencontreController extends AbstractController
         return $this->redirectToRoute('app_admin_rencontre_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/rencontre/{id}/toggle-visible', name: 'app_admin_rencontre_toggle_visible', methods: ['POST'])]
-    public function toggleVisible(Request $request, RencontreRepository $rencontreRepository, int $id, EntityManagerInterface $entityManager): Response
+    #[Route('/rencontre/{slug}/toggle-visible', name: 'app_admin_rencontre_toggle_visible', methods: ['POST'])]
+    public function toggleVisible(Request $request, #[MapEntity(mapping: ['slug' => 'slug'])] Rencontre $rencontre, EntityManagerInterface $entityManager): Response
     {
-        $rencontre = $rencontreRepository->find($id);
-        if (!$rencontre) {
-            throw $this->createNotFoundException('Rencontre non trouvée');
-        }
-
         if ($this->isCsrfTokenValid('toggle-visible'.$rencontre->getId(), $request->getPayload()->getString('_token'))) {
             $rencontre->setVisible(!$rencontre->isVisible());
             $entityManager->flush();

@@ -46,7 +46,7 @@
                             <span class="type-badge">{{ rencontre.type.getLabel() }}</span>
                         </td>
                         <td>
-                            <form method="post" action="{{ path('app_admin_rencontre_toggle_visible', {'id': rencontre.id}) }}">
+                            <form method="post" action="{{ path('app_admin_rencontre_toggle_visible', {'slug': rencontre.slug}) }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token('toggle-visible' ~ rencontre.id) }}">
                                 <button type="submit" class="visibility-toggle {{ rencontre.visible ? 'visible' : 'hidden' }}" title="{{ rencontre.visible ? 'Masquer' : 'Afficher' }}">
                                     <i class="fas {{ rencontre.visible ? 'fa-eye' : 'fa-eye-slash' }}"></i>
@@ -57,13 +57,13 @@
                         <td>{{ rencontre.createdAt ? rencontre.createdAt|date('d F Y') : '' }}</td>
                         <td>
                             <div class="action-buttons">
-                                <a href="{{ path('app_admin_rencontre_show', {'id': rencontre.id}) }}" class="action-button view-button" title="Voir">
+                                <a href="{{ path('app_admin_rencontre_show', {'slug': rencontre.slug}) }}" class="action-button view-button" title="Voir">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ path('app_admin_rencontre_edit', {'id': rencontre.id}) }}" class="action-button edit-button" title="Modifier">
+                                <a href="{{ path('app_admin_rencontre_edit', {'slug': rencontre.slug}) }}" class="action-button edit-button" title="Modifier">
                                     <i class="fas fa-pen"></i>
                                 </a>
-                                <form method="post" action="{{ path('app_admin_rencontre_delete', {'id': rencontre.id}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette rencontre ?');">
+                                <form method="post" action="{{ path('app_admin_rencontre_delete', {'slug': rencontre.slug}) }}" style="display:inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette rencontre ?');">
                                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rencontre.id) }}">
                                     <button type="submit" class="action-button delete-button" title="Supprimer">
                                         <i class="fas fa-trash"></i>

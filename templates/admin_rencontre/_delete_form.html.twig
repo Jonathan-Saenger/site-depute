@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_admin_rencontre_delete', {'id': rencontre.id}) }}" class="admin-delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette rencontre ? Cette action est irréversible.');">
+<form method="post" action="{{ path('app_admin_rencontre_delete', {'slug': rencontre.slug}) }}" class="admin-delete-form" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette rencontre ? Cette action est irréversible.');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ rencontre.id) }}">
     <div class="admin-delete-warning">
         <i class="fas fa-exclamation-triangle"></i>

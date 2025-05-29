@@ -15,10 +15,11 @@ class Rencontre
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
+    private ?int $id = null;    #[ORM\Column(length: 255)]
     private ?string $titre = null;
+
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -56,11 +57,24 @@ class Rencontre
     public function getTitre(): ?string
     {
         return $this->titre;
-    }
-
-    public function setTitre(string $titre): static
+    }    public function setTitre(string $titre): static
     {
         $this->titre = $titre;
+
+        // Réinitialiser le slug si le titre change
+        $this->slug = null;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

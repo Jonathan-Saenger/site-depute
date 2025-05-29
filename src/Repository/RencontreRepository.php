@@ -71,4 +71,12 @@ class RencontreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Trouve une rencontre par son slug
+     */
+    public function findBySlug(string $slug): ?Rencontre
+    {
+        return $this->findOneBy(['slug' => $slug]);
+    }
 }
