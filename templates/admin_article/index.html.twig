@@ -35,13 +35,13 @@
                 <tbody>
                 {% for article in articles %}
                     <tr>
-                        <td>{{ article.title }}</td>
-                        <td>
-                            {% set words = article.content|split(' ') %}
+                        <td>{{ article.title }}</td>                        <td>
+                            {% set cleanContent = article.content|striptags %}
+                            {% set words = cleanContent|split(' ') %}
                             {% if words|length > 15 %}
                                 {{ words|slice(0, 15)|join(' ') ~ ' …' }}
                             {% else %}
-                                {{ article.content }}
+                                {{ cleanContent }}
                             {% endif %}
                         </td>
                         <td>
