@@ -16,6 +16,12 @@ import './styles/components/priorities.css';
 import './styles/components/work.css';
 import './styles/components/newsletter.css';
 import './styles/components/permanence.css';
+import './styles/components/wysiwyg.css';
+import { SimpleWysiwyg, initWysiwygEditors } from './js/wysiwyg.js';
+
+// Rendre disponibles globalement pour compatibilité
+window.SimpleWysiwyg = SimpleWysiwyg;
+window.initWysiwygEditors = initWysiwygEditors;
 
 /**
  * Fonction d'initialisation principale (compatible Turbo)

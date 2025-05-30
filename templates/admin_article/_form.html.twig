@@ -15,13 +15,12 @@
                 {{ form_errors(form.category) }}
                 <div class="admin-form-help">Sélectionnez la section où l'article sera publié</div>
             </div>
-        </div>
-
-        <div class="admin-form-group full-width">
+        </div>        <div class="admin-form-group full-width">
             <div class="admin-form-field">
                 {{ form_label(form.content, 'Contenu', {'label_attr': {'class': 'admin-form-label'}}) }}
-                {{ form_widget(form.content, {'attr': {'class': 'admin-form-textarea', 'rows': 15}}) }}
+                {{ form_widget(form.content, {'attr': {'class': 'admin-form-textarea wysiwyg', 'rows': 15, 'data-wysiwyg': 'true'}}) }}
                 {{ form_errors(form.content) }}
+                <div class="admin-form-help">Utilisez la barre d'outils pour mettre en forme votre contenu</div>
             </div>
         </div>
 

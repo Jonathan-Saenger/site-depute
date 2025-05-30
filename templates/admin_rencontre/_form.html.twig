@@ -46,9 +46,9 @@
         <div class="admin-form-group full-width">
             <div class="admin-form-field">
                 {{ form_label(form.description, 'Description', {'label_attr': {'class': 'admin-form-label'}}) }}
-                {{ form_widget(form.description, {'attr': {'class': 'admin-form-textarea'}}) }}
+                {{ form_widget(form.description, {'attr': {'class': 'admin-form-textarea wysiwyg', 'data-wysiwyg': 'true'}}) }}
                 {{ form_errors(form.description) }}
-                <div class="admin-form-help">Décrivez brièvement l'objet de cette rencontre (optionnel)</div>
+                <div class="admin-form-help">Décrivez brièvement l'objet de cette rencontre et utilisez la barre d'outils pour mettre en forme (optionnel)</div>
             </div>
         </div>
 
