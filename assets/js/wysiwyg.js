@@ -229,11 +229,9 @@ export function initWysiwygEditors() {
             if (!textarea.hasAttribute('data-wysiwyg-initialized')) {
                 new SimpleWysiwyg(textarea);
             }
-        });
-
-        // Auto-détection pour les formulaires d'admin
+        });        // Auto-détection pour les formulaires d'admin (excluant les rencontres)
         const adminContentTextareas = document.querySelectorAll(
-            'textarea[name*="content"], textarea[name*="description"]'
+            'textarea[name*="content"]'
         );
 
         adminContentTextareas.forEach(textarea => {
