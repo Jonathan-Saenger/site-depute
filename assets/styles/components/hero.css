@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  /* Assurer que la section hero s'affiche correctement sous le header */
+  z-index: 1;
 }
 
 .container-hero {
@@ -12,12 +14,14 @@
   max-width: 1200px;
   margin: 0 auto;
   padding-left: 20px;
+  position: relative;
+  z-index: 5;
 }
 
 .hero-content {
   width: 45%;
   position: relative;
-  z-index: 2;
+  z-index: 10;
   padding: 4rem 0;
 }
 
@@ -52,32 +56,298 @@
   width: 50%;
   height: 100%;
   overflow: hidden;
+  z-index: 5;
+  background-color: var(--background-light); /* Fallback si l'image ne se charge pas */
 }
 
 .hero-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
+  /* Assurer que l'image s'affiche bien */
+  display: block;
+  max-width: none;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 991px) {
   .hero-section {
     flex-direction: column;
+    min-height: auto;
+    padding: 2rem 0;
+    /* Assurer que rien ne se superpose à la section hero */
+    z-index: 10;
+    position: relative;
+    isolation: isolate;
   }
 
-.hero-content {
+  .container-hero {
+    padding-left: 0;
+    padding: 0 1rem;
+    /* Assurer que le container s'affiche au-dessus */
+    z-index: 15;
+    position: relative;
+  }
+
+  .hero-content {
     width: 100%;
     text-align: center;
-    padding: 3rem 0;
+    padding: 2rem 0;
+    z-index: 20;
+    order: 2;
+    position: relative;
   }
 
-.hero-image {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-image {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 350px;
+    order: 1;
+    z-index: 15;
+    margin-bottom: 1rem;
+    /* Assurer que l'image s'affiche correctement */
+    display: block;
+    flex-shrink: 0;
   }
 
-.cta-buttons {
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    position: relative;
+    z-index: 1;
+    /* Assurer que l'image ne soit pas cachée */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .cta-buttons {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .cta-buttons .btn {
+    width: 200px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem 0;
+    /* Renforcer la priorité d'affichage */
+    z-index: 10;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-content {
+    padding: 1.5rem 0;
+    z-index: 20;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .hero-image {
+    height: 300px;
+    z-index: 15;
+    /* Assurer une position stable */
+    position: relative;
+    display: block;
+  }
+
+  .hero-image img {
+    /* S'assurer que l'image est visible */
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .hero-image {
+    height: 250px;
+    z-index: 15;
+    position: relative;
+    display: block;
+  }
+
+  .hero-image img {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .container-hero {
+    padding: 0 0.5rem;
+    z-index: 20;
+  }
+}
+
+/* Amélioration pour tablettes */
+@media (max-width: 1200px) and (min-width: 992px) {
+  .hero-content {
+    width: 55%;
+  }
+
+  .hero-image {
+    width: 45%;
+  }
+}
+
+/* Prévenir les conflits avec d'autres sections */
+.news-section,
+.priorities-section,
+.work-section,
+.newsletter {
+  position: relative;
+  z-index: 1;
+  /* S'assurer que ces sections ne chevauchent pas le hero */
+  margin-top: 0;
+  clear: both;
+}
+
+@media (max-width: 991px) {
+  .news-section,
+  .priorities-section,
+  .work-section,
+  .newsletter {
+    z-index: 5;
+    position: relative;
+    /* Assurer une séparation claire */
+    margin-top: 1rem;
+  }
+}
+
+/* Correction spécifique pour le container flex sur mobile */
+@media (max-width: 991px) {
+  .container-hero {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-section {
+    /* Assurer que la section occupe l'espace nécessaire */
+    min-height: auto;
+    height: auto;
+    flex-shrink: 0;
+  }
+}
+
+/* Correction critique pour l'affichage de l'image hero sur mobile/tablette */
+@media (max-width: 991px) {
+  /* Force l'affichage de l'image hero au-dessus de tout autre contenu */
+  .hero-image {
+    /* Position stable et visible */
+    position: relative !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* Assurer l'espace nécessaire */
+    width: 100% !important;
+    height: 350px !important;
+    min-height: 350px;
+
+    /* Éviter tout chevauchement */
+    z-index: 50 !important;
+    transform: none !important;
+
+    /* Marge pour séparer du contenu suivant */
+    margin: 0 0 1.5rem 0 !important;
+
+    /* Assurer que le container ne coupe pas l'image */
+    overflow: visible !important;
+
+    /* Éviter tout effet de masquage */
+    clip: none !important;
+    clip-path: none !important;
+  }
+
+  .hero-image img {
+    /* Image parfaitement visible */
+    position: relative !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    /* Dimensions complètes */
+    width: 100% !important;
+    height: 100% !important;
+
+    /* Aucun masquage */
+    clip: none !important;
+    clip-path: none !important;
+
+    /* Positionnement optimal */
+    object-fit: cover !important;
+    object-position: center top !important;
+
+    /* Z-index élevé pour visibilité */
+    z-index: 1 !important;
+  }
+
+  /* S'assurer que le container hero ne masque rien */
+  .container-hero {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  /* S'assurer que la section hero occupe l'espace nécessaire */
+  .hero-section {
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* Correction spécifique pour tablettes */
+@media (max-width: 768px) and (min-width: 481px) {
+  .hero-image {
+    height: 300px !important;
+    min-height: 300px !important;
+  }
+}
+
+/* Correction spécifique pour petits mobiles */
+@media (max-width: 480px) {
+  .hero-image {
+    height: 250px !important;
+    min-height: 250px !important;
   }
 }
